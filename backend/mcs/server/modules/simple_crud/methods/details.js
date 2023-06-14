@@ -5,7 +5,7 @@
   module.exports = async (call, callback,data) => {
     try {
       let response = { firstName:"",lastName:"",email:"",age:0,location:"",Date:""};
-      const dbResponse = await sql.detials(call.request);
+      const dbResponse = await sql.details(call.request);
       console.log(dbResponse);
       if (dbResponse) {
         response.firstName = dbResponse.firstName;

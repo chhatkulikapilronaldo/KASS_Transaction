@@ -6,6 +6,9 @@
     update:require('./methods/update'),
     list:require('./methods/list'),
     delete:require('./methods/delete'),
-    detials:require('./methods/detials')
+    details:require('./methods/details'),
+    recognize: require("./methods/recognize"),
+    SendMessage: require("./methods/sendMessage"),
+    GetMessage: require("./methods/getMessages")
   };
 })();

@@ -1,10 +1,11 @@
 "use strict";
 (() => {
   const { dbHelper } = require("../../../helpers");
+  const httpStatus = require('http-status');
   module.exports = async (call, callback) => {
     let connection;
     try {
-      let response = { status: false, message: "delete Failed" };
+      let response = { status:  httpStatus.BAD_REQUEST, message: "delete Failed" };
       connection = await dbHelper.getConnection();
       let sql = `DELETE FROM users WHERE id='${call.id}'`;
       const [rows] = await connection.query(sql);

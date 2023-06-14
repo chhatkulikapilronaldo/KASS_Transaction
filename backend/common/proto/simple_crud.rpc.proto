@@ -7,5 +7,8 @@ service SimpleCrudService {
     rpc update (example.simple_crud.UpdateRequest) returns (example.simple_crud.Response);
     rpc list (example.simple_crud.Empty) returns (example.simple_crud.ListResponse);
     rpc details (example.simple_crud.GetRequest) returns (example.simple_crud.Details);
-    rpc delete (example.simple_crud.DeleteRequest) returns (example.simple_crud.Response);
+     rpc delete (example.simple_crud.DeleteRequest) returns (example.simple_crud.Response);
+     rpc recognize(example.simple_crud.RecognitionRequest) returns (example.simple_crud.RecognitionResponse);
+    rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
+     rpc GetMessage(GetMessagesRequest) returns (GetMessagesResponse);
 }

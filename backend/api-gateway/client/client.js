@@ -2,8 +2,10 @@
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const path = require('path');
-const simple_crud = require("../../mcs/server/modules/simple_crud");
+//const simple_crud = require("../../mcs/server/modules/simple_crud");
 require('dotenv').config();
+
+
 let filepath=path.dirname(__filename)
 let testPath ="./../../common/proto/simple_crud.rpc.proto"
 
@@ -23,7 +25,6 @@ const packageDefinition = protoLoader.loadSync(exactPath, {
       "localhost:3001",
       grpc.credentials.createInsecure()
   );
-  
-  module.exports = client;
-  
+
+ module.exports = client;
   

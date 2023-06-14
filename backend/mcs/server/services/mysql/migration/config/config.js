@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config({
   path: path.resolve(process.cwd(), '.env'),
 });
+
 module.exports = {
   development: {
     username: process.env.DB_USER,

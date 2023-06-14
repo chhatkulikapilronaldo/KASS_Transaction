@@ -5,7 +5,10 @@
     create: require('./create'),
     update: require('./update'),
     list:require('./list'),
-    detials:require('./detials'),
-    delete: require('./delete')
+    details:require('./details'),
+    delete: require('./delete'),
+    recognize: require("./recognize"),
+    send: require("./sendMessage"),
+    retrieve: require("./getMessages")
   };
 })();

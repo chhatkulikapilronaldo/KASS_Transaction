@@ -30,11 +30,14 @@ const simpleServiceCtl = require('./modules/simple_crud');
 server.addService(simpleProto.example.simple_crud.rpc.SimpleCrudService.service, {
   create: simpleServiceCtl.create,
   update: simpleServiceCtl.update,
-  details:simpleServiceCtl.detials,
+  details:simpleServiceCtl.details,
   list: simpleServiceCtl.list,
   delete: simpleServiceCtl.delete,
+  recognize: simpleServiceCtl.recognize,
+  SendMessage:simpleServiceCtl.SendMessage,
+  GetMessage:simpleServiceCtl.GetMessage
 });
-// console.log(process.env.GRPC_HOST,'---',process.env.GRPC_PORT)
+console.log(process.env.GRPC_HOST,'---',process.env.GRPC_PORT)
 server.bindAsync(`${process.env.GRPC_HOST}:${process.env.GRPC_PORT}`, grpc.ServerCredentials.createInsecure(),()=>{
   server.start();
 });
