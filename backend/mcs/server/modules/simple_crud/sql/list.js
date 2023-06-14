@@ -4,7 +4,7 @@ const httpStatus = require('http-status');
 
 (() => {
   const { dbHelper } = require('../../../helpers');
-  module.exports = async (call, callback) => {
+  module.exports = async (call) => {
     let connection;
     try {
       let response = { status: httpStatus.BAD_REQUEST, message: 'DATA NOT FOUND' };
