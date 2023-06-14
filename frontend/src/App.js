@@ -1,11 +1,12 @@
-import "./App.scss";
-import { InputField } from "./components";
+
+
+import './App.scss';
+
 function App() {
   return (
-    <div className="App">
-      <InputField />
-    </div>
-  );
-}
+  <div className="App">
+  </div>
+  )
+
 
 export default App;
