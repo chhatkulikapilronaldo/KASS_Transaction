@@ -1,8 +1,11 @@
-import logo from "./logo.svg";
-import "./App.css";
-
+import "./App.scss";
+import { InputField } from "./components";
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <InputField />
+    </div>
+  );
 }
 
 export default App;
