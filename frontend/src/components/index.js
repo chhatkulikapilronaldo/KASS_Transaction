@@ -1,4 +1,3 @@
-
 import { InputField } from "./InputField";
-export { InputField };
-
+import { Button } from "./Button";
+export { InputField, Button };
