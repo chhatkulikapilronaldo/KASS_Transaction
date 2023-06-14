@@ -1,17 +1,26 @@
 
 syntax = "proto3";
-package example.simple_crud;
+package funds_transfer;
 
 message CreateRequest {
-    string firstName = 1;
-    string lastName = 2;
-    string email = 3;
-    int32 age = 4;
-    string location = 5;
-    string date = 6;
+    string id = 1;
+    string uuid = 2;
+    string FullName = 3;
+    string DOB = 4;
+    string Address = 5;
+    string Email = 6;
+    string PhoneNumber = 7;
+    string CitizenShip_No = 8;
+    string Password = 9;
+    string Confirm_Password = 10;
+    string Account_Number = 11;
+    string isDelete = 12;
+    string date = 13;
+    string createdAt = 14;
+    string updatedAt = 15;
 }
 
-message Response {
+message CreateResponse {
     int32 status = 1;
     string message = 2;
 }
