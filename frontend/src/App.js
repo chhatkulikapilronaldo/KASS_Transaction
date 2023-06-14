@@ -1,12 +1,12 @@
-
-
-import './App.scss';
+import "./App.scss";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
-  <div className="App">
-  </div>
-  )
-
+    <div className="container">
+      <Register /> 
+    </div>
+  );
+}
 
 export default App;
