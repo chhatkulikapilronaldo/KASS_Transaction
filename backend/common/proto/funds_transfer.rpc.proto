@@ -1,0 +1,9 @@
+syntax = "proto3";
+package funds_transfer.rpc;
+import "funds.proto";
+
+service SimpleCrudService {
+    rpc create (funds_transfer.CreateRequest) returns (funds_transfer.CreateResponse);
+    rpc login (funds_transfer.LoginRequest) returns (funds_transfer.LoginResponse);
+  
+}

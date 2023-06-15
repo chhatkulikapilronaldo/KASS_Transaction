@@ -1,0 +1,37 @@
+
+syntax = "proto3";
+package funds_transfer;
+
+message CreateRequest {
+    string id = 1;
+    string uuid = 2;
+    string FullName = 3;
+    string DOB = 4;
+    string Address = 5;
+    string Email = 6;
+    string PhoneNumber = 7;
+    string CitizenShip_No = 8;
+    string Password = 9;
+    string Confirm_Password = 10;
+    string Account_Number = 11;
+    string PIN = 12;
+    string isDelete = 13;
+    string date = 14;
+    string createdAt = 15;
+    string updatedAt = 16;
+}
+
+message CreateResponse {
+    int32 status = 1;
+    string message = 2;
+}
+
+message LoginRequest{
+   string PhoneNumber = 1;
+   string Password = 2;
+}
+message LoginResponse{
+   int32 status = 1;
+    string message = 2;
+    string token = 3;
+}

@@ -3,14 +3,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mainroute=require("../client/routes/route");
+const cors = require("cors");
 
 const app = express();
-
+app.use(cors());
+const dotenv = require("dotenv");
+dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/",mainroute);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {
 	console.log("Server running at port %d", PORT);
 });
