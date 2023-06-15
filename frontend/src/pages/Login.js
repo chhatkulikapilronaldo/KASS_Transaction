@@ -4,20 +4,25 @@ import { Link } from "react-router-dom";
 import signinImage from "../assets/images/signin.png";
 import { faPhone, faLock } from "@fortawesome/free-solid-svg-icons";
 import useFormHandling from "../hooks/useFormHandling";
+import axios from "axios";
+import usePostData from "../hooks/usePostData";
 const numbers = /^(97)([0-9]{8})$/g;
 const numberOnly = /^(98)([0-9]{8})$/g;
+const ankit_url = "http://10.7.1.183:9000/users/login";
 export const Login = () => {
-  const [validNum, setValidNum] = useState(false);
-  const [validPass, setValidPass] = useState(false);
+  const [validNum, setValidNum] = useState(true);
+  const [validPass, setValidPass] = useState(true);
+  const [validLogin, setValidLogin] = useState(true);
   const { formData, handleFormInput } = useFormHandling({
     PhoneNumber: "",
     Password: "",
   });
-
-  console.log(validNum);
+  const { postInformation, postUserInfo } = usePostData(ankit_url, formData);
   useEffect(() => {
     //validating phone number
-    if (
+    if (formData.PhoneNumber.length === 0) {
+      setValidNum(true);
+    } else if (
       !(
         formData.PhoneNumber.match(numberOnly) ||
         formData.PhoneNumber.match(numbers)
@@ -27,15 +32,28 @@ export const Login = () => {
     } else {
       setValidNum(true);
     }
+  }, [formData.PhoneNumber]);
+  useEffect(() => {
     //validating password
-    if (formData.Password.length < 8) {
+    if (formData.Password.length === 0) {
+      setValidPass(true);
+    } else if (formData.Password.length < 8) {
       setValidPass(false);
     } else {
       setValidPass(true);
     }
-  }, [formData]);
+  }, [formData.Password]);
+  useEffect(() => {
+    if (validPass && validNum) {
+      setValidLogin(true);
+    } else {
+      setValidLogin(false);
+    }
+  }, [validNum, validPass]);
+  console.log(postInformation);
   const handleSubmit = (e) => {
     e.preventDefault();
+    postUserInfo();
     console.log(formData);
   };
   return (
@@ -58,7 +76,7 @@ export const Login = () => {
               " "
             ) : (
               <span className="login-form-invalidnumber">
-                Invalid phonenumber
+                *must start with 97 or 98 and 10 digits
               </span>
             )}
             <InputField
@@ -72,20 +90,19 @@ export const Login = () => {
               " "
             ) : (
               <span className="login-form-invalidnumber">
-                Must be at least 8 characters
+                *must be at least 8 characters
               </span>
             )}
-            {/* {validLogin ? (
-              <Button type="Submit" name="Login" />
+            {validLogin ? (
+              <Button type="Submit" name="Login" disability="false" />
             ) : (
               <Button
                 type="Submit"
                 name="Login"
                 className="validLogin"
-                disabled
+                disability="true"
               />
-            )} */}
-            <Button type="Submit" name="Login" />
+            )}
           </form>
           <p>
             Have Account ?

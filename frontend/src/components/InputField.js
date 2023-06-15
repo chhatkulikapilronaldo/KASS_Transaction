@@ -12,6 +12,7 @@ export const InputField = ({ type, name, handleInput, label, icon }) => {
           name={name}
           onChange={handleInput}
           placeholder={`Enter ${name}`}
+          required
         />
       </div>
     </div>

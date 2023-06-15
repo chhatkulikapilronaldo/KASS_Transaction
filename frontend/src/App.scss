@@ -1,10 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Montserrat:wght@200;400;500;600;700&display=swap");
 
 @import "./assets/styles/main.scss";
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
 }
-
-
+.container {
+  margin: auto;
+}
+a,
+li {
+  text-decoration: none;
+  list-style-type: none;
+  color: #333333;
+}

@@ -34,8 +34,13 @@
       //   background-color: rgb(20, 3, 116);
       // }
     }
+    form {
+      input {
+        width: 100%;
+      }
+    }
     .login-form-invalidnumber {
-      color: red;
+      color: gray;
       font-size: 14px;
     }
     .button {
@@ -55,7 +60,7 @@
 }
 
 //responsive design
-@media (max-width: 850px) {
+@media (max-width: 860px) {
   .login {
     .login__wrapper {
       flex-direction: column;
@@ -79,7 +84,7 @@
     .login__wrapper {
       flex-direction: column;
       flex-flow: column-reverse;
-      margin: 10px auto;
+      margin: 40px auto;
       transition: 300ms ease-in-out;
       .login-image {
         img {
@@ -91,12 +96,12 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 385px) {
   .login {
     .login__wrapper {
       flex-direction: column;
       flex-flow: column-reverse;
-      margin: 10px;
+      margin: 30px;
       .login-image {
         img {
           height: 200px;
