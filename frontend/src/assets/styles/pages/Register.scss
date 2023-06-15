@@ -1,6 +1,8 @@
 .register__wrapper {
   // border: 1px solid black;
-  margin: 20px auto;
+  max-width: 1200px;
+  margin: 30px auto;
+  // background-color: aliceblue;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +12,7 @@
   padding: 16px 20px;
   .register-image {
     width: 50%;
-      img {
+    img {
       height: 600px;
       width: 100%;
     }
@@ -22,7 +24,7 @@
       font-weight: 500;
       margin-bottom: 16px;
       position: relative;
-      &:after{
+      &:after {
         content: " ";
         background-color: #11339b;
         position: absolute;
@@ -33,40 +35,50 @@
         border-radius: 25px;
       }
     }
-    input {
-      width: 600px;
-    }
-  }
-  p {
-    margin-top: 10px;
-    a {
-      &:hover {
-        color: #11339b;
-        font-weight: 500;
-        // text-decoration: underline;
+    .form {
+      input {
+        width: 600px;
+      }
+      span {
+        font-size: 12px;
+        color: red;
       }
     }
-  }
-  button {
-    margin: 10px 16px;
-  }
-}
-
-@media (max-width:768px){
-.register__wrapper{
-  flex-direction: column;
-  flex-flow: column-reverse;
-  .register-image{
-    img{
-      width: 100%;
+    p {
+      margin-top: 10px;
+      a {
+        &:hover {
+          color: #11339b;
+          font-weight: 500;
+          // text-decoration: underline;
+        }
+      }
     }
-    width:100%;    
+    button {
+      margin: 10px 16px;
+    }
   }
-  .register-data{
-    width: 100%;
-    margin: 10px 20px;
-  }
-
-
 }
+
+@media (max-width: 768px) {
+  .register__wrapper {
+    flex-direction: column;
+    flex-flow: column-reverse;
+    .register-image {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    .register-data {
+      width: 100%;
+      margin: 10px 20px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .register-image {
+    display: none;
+  }
 }

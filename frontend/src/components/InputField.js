@@ -9,9 +9,9 @@ export const InputField = ({ type, name, handleInput, label, icon }) => {
         <FontAwesomeIcon icon={icon} />
         <input
           type={type}
-          name={name}
+          name={name}        
           onChange={handleInput}
-          placeholder={`Enter ${name}`}
+          placeholder={`Enter ${name}`} required
         />
       </div>
     </div>
