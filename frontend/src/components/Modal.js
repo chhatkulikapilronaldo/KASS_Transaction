@@ -5,6 +5,8 @@ import { InputField } from "./InputField";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "./Button";
 import useFormHandling from "../hooks/useFormHandling";
+import usePostData from "../hooks/usePostData";
+const kapil_PinUpdate_url = "http://10.7.1.13:8080/users/update";
 export const Modal = ({
   transType,
   oldData,
@@ -15,7 +17,6 @@ export const Modal = ({
   modalImage,
   displayState,
 }) => {
-  const { formData, handleFormInput } = useFormHandling();
   const [inType, setInType] = useState("text");
   const handleModalClose = () => {
     displayState(true);
@@ -29,9 +30,9 @@ export const Modal = ({
       setInType("text");
     }
   }, [transType]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
   };
   return (
     <div className="modal">

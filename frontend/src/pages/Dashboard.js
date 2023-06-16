@@ -31,10 +31,10 @@ export const Dashboard = () => {
       ) : (
         <Modal
           transType="Change PIN"
-          oldData="OldPIN"
+          oldData="OldPIN_Number"
           oldDataLabel="Old PIN"
-          newData="New PIN"
-          confirmData="Confirm PIN"
+          newData="NewPIN_Number"
+          confirmData="ConfirmPIN_Number"
           displayState={setModalPinState}
           icon={faLock}
           modalImage={password}

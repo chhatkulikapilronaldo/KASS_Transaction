@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const usePostData = (requestURL,postData) => {
+const usePostData = (requestURL, postData) => {
   const [postInformation, setPostInformation] = useState();
   const postUserInfo = () => {
     axios.post(requestURL, postData).then((response) => {
