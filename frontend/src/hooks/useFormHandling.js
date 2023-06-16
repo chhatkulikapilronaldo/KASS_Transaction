@@ -7,7 +7,6 @@ const useFormHandling = (initialValue) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-      ["uuid"]: "6cedeb38-b756-4c57-b3fe-b6b1168016db",
     });
   };
 

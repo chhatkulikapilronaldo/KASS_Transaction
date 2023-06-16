@@ -52,21 +52,21 @@ export const Modal = ({
                 name={oldData}
                 label={oldDataLabel}
                 icon={icon}
-                handleInput={handleFormInput}
+                // handleInput={handleFormInput}
               />
               <InputField
                 type={inType}
                 name={newData}
                 label={newData}
                 icon={icon}
-                handleInput={handleFormInput}
+                // handleInput={handleFormInput}
               />
               <InputField
                 type={inType}
                 name={confirmData}
                 label={confirmData}
                 icon={icon}
-                handleInput={handleFormInput}
+                // handleInput={handleFormInput}
               />
               <Button className="modal-button" type="Submit" name="Confirm" />
             </form>
