@@ -5,5 +5,7 @@
     const controller = require("../../controller/user.controller.js");
    
     router.post('/create_users',controller.createUser);
+    router.post('/login',controller.loginUser);
+    router.put('/update',controller.updateUserPIN);
     module.exports = router;
 })()

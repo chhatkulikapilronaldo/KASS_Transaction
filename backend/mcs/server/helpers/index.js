@@ -3,6 +3,7 @@
 (() => {
   module.exports = {
     dbHelper: require('./mysql'),
-    hasher: require("../helpers/hasher")
+    hasher: require("../helpers/hasher"),
+    validationHelper: require("../helpers/usersValidationHelper"),
   };
 })();

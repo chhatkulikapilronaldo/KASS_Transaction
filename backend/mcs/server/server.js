@@ -29,8 +29,11 @@ const simpleServiceCtl = require('./modules/simple_crud');
 
 server.addService(simpleProto.funds_transfer.rpc.SimpleCrudService.service, {
   create: simpleServiceCtl.create,
+  login: simpleServiceCtl.login,
+  update: simpleServiceCtl.update,
  
 });
+console.log(process.env.GRPC_HOST,'---',process.env.GRPC_PORT)
 server.bindAsync(`${process.env.GRPC_HOST}:${process.env.GRPC_PORT}`, grpc.ServerCredentials.createInsecure(),()=>{
   server.start();
 });

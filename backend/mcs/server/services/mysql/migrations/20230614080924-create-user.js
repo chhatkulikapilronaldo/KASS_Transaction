@@ -49,6 +49,10 @@ module.exports = {
           allowNull:false,
           type:Sequelize.BIGINT
       },
+      PIN:{
+        allowNull:false,
+        type:Sequelize.BIGINT
+      },
       is_delete:{
         defaultValue: 0,
         type: Sequelize.TINYINT

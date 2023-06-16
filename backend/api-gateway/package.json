@@ -3,6 +3,7 @@
     "@grpc/grpc-js": "^1.8.15",
     "@grpc/proto-loader": "^0.7.7",
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "http-status": "^1.6.2",

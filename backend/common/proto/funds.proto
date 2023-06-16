@@ -1,4 +1,3 @@
-
 syntax = "proto3";
 package funds_transfer;
 
@@ -14,10 +13,11 @@ message CreateRequest {
     string Password = 9;
     string Confirm_Password = 10;
     string Account_Number = 11;
-    string isDelete = 12;
-    string date = 13;
-    string createdAt = 14;
-    string updatedAt = 15;
+    string PIN = 12;
+    string isDelete = 13;
+    string date = 14;
+    string createdAt = 15;
+    string updatedAt = 16;
 }
 
 message CreateResponse {
@@ -25,72 +25,22 @@ message CreateResponse {
     string message = 2;
 }
 
-message Empty {
-    
+message LoginRequest{
+   string PhoneNumber = 1;
+   string Password = 2;
 }
-
+message LoginResponse{
+   int32 status = 1;
+    string message = 2;
+    string token = 3;
+}
 message UpdateRequest {
-    string id = 1;
-    string firstName = 2;
-    string lastName = 3;
-    string email = 4;
-    int32 age = 5;
-    string location = 6;
-    string date = 7;
+    string uuid = 1;
+    string OldPIN_Number = 2;
+    string NewPIN_Number = 3;
+    string ConfirmPIN_Number = 4;
 }
-message DeleteRequest{
-    string id = 1;
-}
-
-message ListResponse {
-    repeated Details data= 1;
-    string message=2;
-    int32 status =3;
-}
-
-message Details {
-    string firstName = 1;
-    string lastName = 2;
-    string email = 3;
-    int32 age = 4;
-    string location = 5;
-    string date = 6;
-}
-
-message GetRequest {
-    int32 id = 1;
-}
-
-message RecognitionRequest {
-  bytes data = 1;
-}
-
-message RecognitionResponse {
-  string result = 1;
-}
-message SendMessageRequest {
-  string sender_id = 1;
-  string receiver_id = 2;
-  string message = 3;
-}
-
-message SendMessageResponse {
-  string status = 1;
-  string message = 2;
-}
-
-message GetMessagesRequest {
-  string id = 1;
-}
-
-message Message {
-  string sender_id = 1;
-  string receiver_id = 2;
-  string message = 3;
-  int64 date = 4;
-}
-
-message GetMessagesResponse {
-  string status = 1;
-  repeated Message message = 2;
+message UpdateResponse{
+    int32 status = 1;
+    string message = 2;
 }

@@ -14,7 +14,27 @@ const hashpassword = async(password) =>{
 
 const comparePassword = async(password,hashpassword) =>{
     try {
-        return bcrypt.compare(password, hashpassword);     
+        // const compareResult=await bcrypt.compareSync(password,hashpassword,(err,result)=>{
+        //     if(err){
+        //         return err;
+        //     }else{
+        //         if(result){
+        //             return true;
+        //         }
+        //         else{
+        //             console.log("no aunthentication");
+        //         }
+        //     }
+        // })
+        const passwordsMatch = bcrypt.compareSync(password, hashpassword);
+
+  if (passwordsMatch) {
+    return true;
+  } else {
+    console.log('Authentication failed');
+  }
+      
+      
     } catch (error) {
         console.log(error)
     }
