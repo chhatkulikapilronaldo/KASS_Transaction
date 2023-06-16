@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { InputField, Button } from "../components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signinImage from "../assets/images/signin.png";
 import { faPhone, faLock } from "@fortawesome/free-solid-svg-icons";
 import useFormHandling from "../hooks/useFormHandling";
-import axios from "axios";
 import usePostData from "../hooks/usePostData";
 const numbers = /^(97)([0-9]{8})$/g;
 const numberOnly = /^(98)([0-9]{8})$/g;
 const ankit_url = "http://10.7.1.183:9000/users/login";
+const kapil_url = "http://10.7.13:8080/users/login";
 export const Login = () => {
   const [validNum, setValidNum] = useState(true);
   const [validPass, setValidPass] = useState(true);
   const [validLogin, setValidLogin] = useState(true);
+  const navigate = useNavigate();
   const { formData, handleFormInput } = useFormHandling({
     PhoneNumber: "",
     Password: "",
@@ -51,10 +52,19 @@ export const Login = () => {
     }
   }, [validNum, validPass]);
   console.log(postInformation);
+
+  useEffect(() => {
+    if (postInformation === undefined) {
+      console.log("hello");
+    } else {
+      localStorage.setItem("userToken", postInformation.token);
+      navigate("/register");
+    }
+  }, [postInformation]);
   const handleSubmit = (e) => {
     e.preventDefault();
     postUserInfo();
-    console.log(formData);
+
   };
   return (
     <div className="login">
@@ -106,7 +116,7 @@ export const Login = () => {
           </form>
           <p>
             Have Account ?
-            <Link>
+            <Link to="/register">
               <span> Register Here</span>{" "}
             </Link>
           </p>
