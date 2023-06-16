@@ -5,5 +5,6 @@
     dbHelper: require('./mysql'),
     hasher: require("./hasher"),
     validationHelper: require("../helpers/usersValidation"),
+    authenticationHelper: require("../helpers/authenticationHelper"),
   };
 })();

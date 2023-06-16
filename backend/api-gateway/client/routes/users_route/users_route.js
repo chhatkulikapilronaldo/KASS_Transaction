@@ -6,6 +6,8 @@
    
     router.post('/create_users',controller.createUser);
     router.post('/login',controller.loginUser);
+    router.get('/retrieve/:id',controller.detailUser);
+    router.put('/updatePassword/:id',controller.updateUserPassword);
   
     module.exports = router;
 })()

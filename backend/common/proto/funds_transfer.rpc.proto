@@ -5,5 +5,7 @@ import "funds.proto";
 service SimpleCrudService {
     rpc create (funds_transfer.CreateRequest) returns (funds_transfer.CreateResponse);
     rpc login (funds_transfer.LoginRequest) returns (funds_transfer.LoginResponse);
+    rpc details (funds_transfer.DetailRequest) returns (funds_transfer.DetailResponse);
+      rpc updatePassword (funds_transfer.updatePassRequest) returns (funds_transfer.updatePassResponse);
   
 }

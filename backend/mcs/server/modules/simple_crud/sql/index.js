@@ -3,6 +3,8 @@
 (() => {
   module.exports = {
     create: require('./create'),
-    login: require('./login')
+    login: require('./login'),
+    details: require("./details"),
+    updatePassword: require("./updatePassword")
   };
 })();

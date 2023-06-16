@@ -17,8 +17,12 @@
       let pass = output[0].Password;
       const compare = await hasher.comparePassword(call.Password, pass);
       if (compare == true) {
+        const payload = {
+          userId: call.PhoneNumber,
+          // Add any additional user information as needed
+        };
         //Creating token
-        const token = await JWT.sign({}, process.env.JWT_SECRET, {
+        const token = await JWT.sign({payload}, process.env.JWT_SECRET, {
           expiresIn: "14d",
         });
         let insert = {
