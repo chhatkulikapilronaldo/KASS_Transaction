@@ -17,10 +17,9 @@ import {
 const Phonenum = /^[0-9]{10}$/g;
 const Name = /^[a-zA-Z\s']+$/g;
 const Password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
-const register_URL = "http://10.7.1.13:8080/users/create_users";
+const register_URL = "http://10.7.1.183:9000/users/create_users";
 export const Register = () => {
-
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   const [validRegister, setValidRegister] = useState(false);
   const { formData, handleFormInput } = useFormHandling({
     FullName: "",
@@ -76,9 +75,9 @@ export const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     postUserInfo();
-    if(postInformation.status===200){
-      navigate('/');
-    }
+    // if (postInformation.status === 200) {
+    //   navigate("/");
+    // }
   };
   return (
     <div className="register__wrapper">
@@ -151,7 +150,7 @@ export const Register = () => {
               handleInput={handleFormInput}
             />
             <p>
-              Already have an account?<Link to='/'>&nbsp; Login</Link>
+              Already have an account?<Link to="/">&nbsp; Login</Link>
             </p>
             {validRegister ? (
               <Button
