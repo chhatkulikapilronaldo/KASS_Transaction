@@ -1,9 +1,45 @@
+// $text-font: 16px;
+// $header-text-color: #00186e;
+// .inputfield {
+//   p {
+//     font-size: 18px;
+//     margin: 10px 0;
+//     font-weight: 500;
+//     color: $header-text-color;
+//   }
+//   .inputfield-input {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+//   svg {
+//     padding: 14px;
+//     background-color: #091540;
+//     color: white;
+//     border-radius: 5px;
+//     border-top-right-radius: 0px;
+//     border-bottom-right-radius: 0px;
+//   }
+//   input {
+//     font-size: $text-font;
+//     padding: 10px 15px;
+//     outline: none;
+//     border-radius: 5px;
+//     border: none;
+//     border: 1px solid rgb(14, 12, 12);
+//     border-left: none;
+//     border-top-left-radius: 0px;
+//     border-bottom-left-radius: 0px;
+//     font-weight: 400;
+//   }
+// }
+
 $text-font: 16px;
-$header-text-color: #00186e;
+$header-text-color: #0c2570;
 .inputfield {
   p {
     font-size: 18px;
-    margin: 10px 0;
+    margin: 10px 0 2px 0;
     font-weight: 500;
     color: $header-text-color;
   }

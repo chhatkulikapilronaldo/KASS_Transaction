@@ -19,6 +19,7 @@ export const Login = () => {
     Password: "",
   });
   const { postInformation, postUserInfo } = usePostData(ankit_url, formData);
+  console.log(formData);
   useEffect(() => {
     //validating phone number
     if (formData.PhoneNumber.length === 0) {
