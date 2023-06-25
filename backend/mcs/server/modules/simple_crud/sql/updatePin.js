@@ -9,13 +9,17 @@ const { where } = require("sequelize");
     try {
       let response = { status: false, message: "update Failed" };
       connection = await dbHelper.getConnection();
+      const userdetail = await connection.query(
+        `Select * from login_infos WHERE token='${call.token}'`
+      );
+      const concernedUserId = userdetail[0][0].uuid;
       const PINs = await connection.query(
-        `Select PIN from users WHERE uuid='${call.uuid}'`
+        `Select PIN from users WHERE uuid='${concernedUserId}'`
       );
 
       if (call.OldPIN_Number == PINs[0][0].PIN) {
         if (call.NewPIN_Number == call.ConfirmPIN_Number) {
-          let sql = `UPDATE users SET PIN='${call.ConfirmPIN_Number}'WHERE uuid='${call.uuid}'`;
+          let sql = `UPDATE users SET PIN='${call.ConfirmPIN_Number}'WHERE uuid='${concernedUserId}'`;
           const [rows] = await connection.query(sql);
           //console.log(rows)
           if (rows.affectedRows > 0) {

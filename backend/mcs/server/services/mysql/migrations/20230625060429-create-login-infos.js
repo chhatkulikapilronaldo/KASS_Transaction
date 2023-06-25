@@ -1,4 +1,3 @@
-"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -8,6 +7,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+      },
+      uuid:{
+        allowNull:false,
+        type:Sequelize.STRING
       },
       PhoneNumber: {
         allowNull: false,
@@ -20,10 +23,10 @@ module.exports = {
       Token:{
         type: Sequelize.STRING
       },
-      date:{
+      date: {
         type: 'TIMESTAMP',
-        defaultvalue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     });
   },
   async down(queryInterface, Sequelize) {

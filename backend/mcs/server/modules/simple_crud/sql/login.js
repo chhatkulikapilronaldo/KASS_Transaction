@@ -4,6 +4,7 @@
   const { dbHelper, hasher } = require('../../../helpers');
   const httpStatus = require('http-status');
   const dotenv = require("dotenv");
+  const date = new Date().getTime();
   dotenv.config();
   const JWT = require("jsonwebtoken");
   module.exports = async (call) => {
@@ -22,9 +23,11 @@
           expiresIn: "14d",
         });
         let insert = {
+          uuid:output[0].uuid,
           PhoneNumber: call.PhoneNumber,
           Password: call.Password,
           Token: token
+          
         }
 
         const [rows] = await connection.query(`insert into login_infos set ?`, insert);

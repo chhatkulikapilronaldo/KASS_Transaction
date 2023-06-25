@@ -50,7 +50,8 @@ exports.loginUser = async (req, res) => {
 };
 exports.updateUserPIN = async (req, res) => {
   const requestObject = {
-   uuid: req.body.uuid,
+  //  uuid: req.body.uuid,
+    token:req.headers.authorization,
    OldPIN_Number:req.body.OldPIN_Number,
    NewPIN_Number:req.body.NewPIN_Number,
    ConfirmPIN_Number:req.body.ConfirmPIN_Number
@@ -66,3 +67,38 @@ exports.updateUserPIN = async (req, res) => {
     }
   });
 };
+// exports.getDetials = async (req, res) => {
+//   const requestObject = {
+//   //  uuid: req.body.uuid,
+//     token:req.headers.authorization,
+//   };
+
+//   client.detials(requestObject, (error, response) => {
+//     if (error) {
+//       //console.error("Error listing records:", error);
+//       res.status(400).send(error);
+//     } else {
+//       // console.log("List response:", response);
+//       res.status(200).send(response);
+//     }
+//   });
+// };
+exports.depositAmount = async (req, res) => {
+  const requestObject = {
+  token:req.headers.authorization,
+   Amount:req.body.Amount,
+   Remarks:req.body.Remarks,
+  };
+
+  client.deposit(requestObject, (error, response) => {
+    if (error) {
+      //console.error("Error listing records:", error);
+      res.status(400).send(error);
+    } else {
+      // console.log("List response:", response);
+      res.status(200).send(response);
+    }
+  });
+};
+
+

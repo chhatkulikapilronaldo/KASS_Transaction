@@ -6,6 +6,8 @@
    
     router.post('/create_users',controller.createUser);
     router.post('/login',controller.loginUser);
-    router.put('/update',controller.updateUserPIN);
+    router.put('/updatePin',controller.updateUserPIN);
+    router.post('/depositAmount',controller.depositAmount);
+   // router.get('/getDetials',controller.getDetials)
     module.exports = router;
 })()

@@ -33,9 +33,10 @@ message LoginResponse{
    int32 status = 1;
     string message = 2;
     string token = 3;
+
 }
 message UpdateRequest {
-    string uuid = 1;
+    string token = 1;
     string OldPIN_Number = 2;
     string NewPIN_Number = 3;
     string ConfirmPIN_Number = 4;
@@ -44,3 +45,15 @@ message UpdateResponse{
     int32 status = 1;
     string message = 2;
 }
+
+message depositRequest{
+   string token = 1;
+    string Amount = 2;
+    string Remarks = 3;
+}
+
+message depositResponse{
+    int32 status = 1;
+    string message = 2;
+}
+

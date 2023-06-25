@@ -31,6 +31,8 @@ server.addService(simpleProto.funds_transfer.rpc.SimpleCrudService.service, {
   create: simpleServiceCtl.create,
   login: simpleServiceCtl.login,
   update: simpleServiceCtl.update,
+  deposit: simpleServiceCtl.deposit,
+  // details:simpleServiceCtl.details,
  
 });
 console.log(process.env.GRPC_HOST,'---',process.env.GRPC_PORT)
