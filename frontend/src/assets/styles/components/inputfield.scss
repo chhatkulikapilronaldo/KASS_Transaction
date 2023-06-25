@@ -1,8 +1,8 @@
 $text-font: 16px;
-$header-text-color: #0c2570;
+$header-text-color: #08163f;
 .inputfield {
   p {
-    font-size: 18px;
+    font-size: 15px;
     margin: 10px 0 2px 0;
     font-weight: 500;
     color: $header-text-color;
@@ -21,7 +21,7 @@ $header-text-color: #0c2570;
     border-bottom-right-radius: 0px;
   }
   input {
-    font-size: $text-font;
+    font-size: 13px;
     padding: 10px 15px;
     outline: none;
     border-radius: 5px;

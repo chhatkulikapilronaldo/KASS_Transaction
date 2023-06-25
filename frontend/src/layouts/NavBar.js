@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import logo from "../assets/images/globallogo.jpg";
+import logo from "../assets/images/logo.png";
 import profile from "../assets/images/profile.png";
 import { Modal } from "../components/Modal";
 import { Outlet } from "react-router-dom";
+import { Button } from "../components/Button";
 
 export const NavBar = ({ displayModalState, displayPinModalState }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,16 +20,25 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
   return (
     <div className="navbar__wrapper">
       <div className="navbar-image">
-        <img src={logo} alt="logo" />
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
+        <div className="dashboard-links">
+          <ul>
+            <li>Deposit</li>
+            <li>FundTransfer</li>
+          </ul>
+        </div>
       </div>
+
       <div className="navbar-user">
         <div className="user-profile">
+          <img src={profile} alt="profileimage" onClick={handleClick} />
           <p>
             Welcome!!
             <br />
             <span>Username</span>
           </p>
-          <img src={profile} alt="profileimage" onClick={handleClick} />
         </div>
         {isVisible === true ? (
           <div className="user-setting">
