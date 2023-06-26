@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AccountTab, NavBar } from "../layouts";
 import { Modal } from "../components/Modal";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import password from "../assets/images/register.png";
 import { Button } from "../components/Button";
+import useFormHandling from "../hooks/useFormHandling";
+import { Deposit } from "./Deposit";
+
 export const Dashboard = () => {
   const [modalPasswordState, setModalPasswordState] = useState(true);
   const [modalPinState, setModalPinState] = useState(true);
+
+  const { formData, handleFormInput } = useFormHandling({
+    Password: "",
+    OldPassword: "",
+    NewPassword: "",
+    ConfirmPassword: "",
+  });
+
   return (
     <div className="dashboard__wrapper">
       {/* ........NavBar/ Modal part......... */}
@@ -21,14 +32,15 @@ export const Dashboard = () => {
           <Modal
             transType="Change Password"
             oldData="OldPassword"
-            oldDataLabel="Old Password"
-            newData="New Password"
-            confirmData="Confirm Passowrd"
+            oldDataLabel="OldPassword"
+            newData="NewPassword"
+            confirmData="ConfirmPassword"
             displayState={setModalPasswordState}
             icon={faLock}
             modalImage={password}
           />
         )}
+
         {modalPinState ? (
           ""
         ) : (
@@ -47,7 +59,6 @@ export const Dashboard = () => {
 
       {/* .......Dashboard Body.......... */}
       <div className="dashboard-body">
-        
         <AccountTab />
       </div>
     </div>

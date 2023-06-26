@@ -8,6 +8,7 @@
   border-radius: 5px;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 60px;
   .account-text {
     // border: 1px solid black;
     padding: 16px;
@@ -27,6 +28,9 @@
     }
     h4 {
       margin: 6px;
+      i{
+        cursor: pointer;
+      }
     }
   }
 }

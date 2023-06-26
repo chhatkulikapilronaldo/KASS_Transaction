@@ -6,7 +6,9 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "./Button";
 import useFormHandling from "../hooks/useFormHandling";
 import usePostData from "../hooks/usePostData";
+import usePutData from "../hooks/usePutData";
 const kapil_PinUpdate_url = "http://10.7.1.13:8080/users/update";
+const ankit_PassUpdate_url = "http://10.7.1.183:9000/users/updatePassword";
 export const Modal = ({
   transType,
   oldData,
@@ -21,6 +23,17 @@ export const Modal = ({
   const handleModalClose = () => {
     displayState(true);
   };
+
+  const [validPass, setValidPass] = useState(false);
+  const { formData, handleFormInput } = useFormHandling({
+    OldPassword: "",
+    NewPassword: "",
+    ConfirmPassword: "",
+  });
+  const { putInformation, updateUserPassword } = usePutData(
+    ankit_PassUpdate_url,
+    formData
+  );
   useEffect(() => {
     if (transType === "Change Password") {
       setInType("text");
@@ -31,8 +44,22 @@ export const Modal = ({
     }
   }, [transType]);
 
+  useEffect(() => {
+    if (formData.OldPassword) {
+      setValidPass(true);
+    } else if (formData.OldPassword.length === 0) {
+      setValidPass(false);
+    } else {
+      setValidPass(false);
+    }
+  }, [formData.OldPassword]);
+
+  console.log(formData);
+  console.log(putInformation);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    updateUserPassword();
   };
   return (
     <div className="modal">
@@ -52,21 +79,31 @@ export const Modal = ({
                 name={oldData}
                 label={oldDataLabel}
                 icon={icon}
-                // handleInput={handleFormInput}
+                handleInput={handleFormInput}
               />
+              {transType === "Change Password" ? (
+                validPass ? (
+                  <span>*Old password must be matched*</span>
+                ) : (
+                  " "
+                )
+              ) : (
+                <p>hello</p>
+              )}
+
               <InputField
                 type={inType}
                 name={newData}
                 label={newData}
                 icon={icon}
-                // handleInput={handleFormInput}
+                handleInput={handleFormInput}
               />
               <InputField
                 type={inType}
                 name={confirmData}
                 label={confirmData}
                 icon={icon}
-                // handleInput={handleFormInput}
+                handleInput={handleFormInput}
               />
               <Button className="modal-button" type="Submit" name="Confirm" />
             </form>

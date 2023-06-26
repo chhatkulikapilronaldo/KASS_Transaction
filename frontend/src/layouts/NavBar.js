@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import logo from "../assets/images/logo.png";
 import profile from "../assets/images/profile.png";
 import { Modal } from "../components/Modal";
-import { Outlet } from "react-router-dom";
+import { Outlet} from "react-router-dom";
 import { Button } from "../components/Button";
+import { Deposit } from "../pages";
 
-export const NavBar = ({ displayModalState, displayPinModalState }) => {
+export const NavBar = ({ displayModalState, displayPinModalState}) => {
+
   const [isVisible, setIsVisible] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+  const [showDepositModal, setShowDepositModal] = useState(false);
   const handleClick = () => {
     setIsVisible(!isVisible);
   };
@@ -17,15 +20,24 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
   const handleChangePin = () => {
     displayPinModalState(false);
   };
+  const depositModal=()=>{
+    setShowDepositModal(true);
+    setShowModal(false);
+ }
   return (
     <div className="navbar__wrapper">
       <div className="navbar-image">
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
-        <div className="dashboard-links">
+        <div className="navbar-links">
           <ul>
-            <li>Deposit</li>
+            <li onClick={depositModal}>Deposit</li>
+            {
+              showDepositModal === true? (
+                <Deposit displayState={setShowModal}/>
+              ): (" ")
+            }
             <li>FundTransfer</li>
           </ul>
         </div>

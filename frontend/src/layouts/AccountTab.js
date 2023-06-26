@@ -68,12 +68,12 @@ export const AccountTab = () => {
   return (
     <div className="account__wrapper">
       <div className="account-text">
-        <div className="account-name">
+        {/* <div className="account-name">
           <i>
             <FontAwesomeIcon icon={faFolderClosed} />
           </i>
           <h5>Global Smart Plus</h5>
-        </div>
+        </div> */}
         <p className="holder-name">Account Holder Name: </p>
         <h4>Max Waltson</h4>
         <p className="holder-acc">Account number:</p>
@@ -84,8 +84,8 @@ export const AccountTab = () => {
           {/* {showAmount ? (
            hideAmount
           ) : null}{" "} */}
-          {showAmount ? <p>120000</p> : <p>XXXXXXXXX</p>}
-          <FontAwesomeIcon onClick={toggleAmount} icon={faEye} />
+          {showAmount ? <span>120000 &nbsp; &nbsp;</span> : <span>XXXXXX  &nbsp; &nbsp;</span>}
+         <i> <FontAwesomeIcon onClick={toggleAmount} icon={faEye} /></i>
         </h4>
       </div>
 

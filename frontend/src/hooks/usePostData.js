@@ -3,10 +3,14 @@ import axios from "axios";
 
 const usePostData = (requestURL, postData) => {
   const [postInformation, setPostInformation] = useState();
-  const postUserInfo = () => {
-    axios.post(requestURL, postData).then((response) => {
+  const postUserInfo = async() => {
+    try{
+    await axios.post(requestURL, postData).then((response) => {
       setPostInformation(response.data);
     });
+  }catch(error){
+    console.log(error);
+  }
   };
   return {
     postInformation,

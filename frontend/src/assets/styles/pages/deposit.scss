@@ -1,0 +1,122 @@
+.modal {
+    margin: 0 auto;
+    padding: 48px 0px;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.753);
+    height: 100vh;
+    .modal__wrapper {
+      margin: 0 auto;
+      position: relative;
+      width: fit-content;
+      padding: 32px;
+    }
+    .modal-clear {
+      position: absolute;
+      // right: -15px;
+      right: -10px;
+      top: -20px;
+      display: flex;
+      align-items: center;
+      // justify-content: center;
+      flex-direction: row-reverse;
+      padding: 16px;
+      margin: 0 auto;
+      width: fit-content;
+      svg {
+        font-size: 36px;
+        cursor: pointer;
+        color: white;
+        transition: 300ms ease;
+        &:hover {
+          transform: rotate(360deg);
+        }
+      }
+    }
+    .modal-form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: fit-content;
+      padding: 16px;
+      margin: 0 auto;
+      border-radius: 8px;
+      background-color: white;
+      transition: 400ms ease;
+      .form-image {
+        padding: 8px;
+        img {
+          height: 350px;
+          width: 350px;
+        }
+      }
+      .form {
+        padding: 16px;
+        .modal-button {
+          margin-top: 16px;
+        }
+        form {
+          input {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  
+  //responsive design
+  @media (max-width: 785px) {
+    .modal {
+      .modal__wrapper {
+        .modal-clear {
+          right: 0;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .modal {
+      .modal__wrapper {
+        .modal-form {
+          transition: 400ms ease;
+          flex-direction: column-reverse;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modal {
+      .modal__wrapper {
+        .modal-form {
+          .form-image {
+            img {
+              width: 320px;
+              height: 320px;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modal {
+      .modal__wrapper {
+        padding: 10px;
+        .modal-clear {
+          top: -50px;
+        }
+        .modal-form {
+          padding: 10px 8px;
+          .form-image {
+            img {
+              width: 250px;
+              height: 250px;
+            }
+          }
+        }
+      }
+    }
+  }
