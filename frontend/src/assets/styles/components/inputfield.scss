@@ -38,9 +38,9 @@ $text-font: 16px;
 $header-text-color: #0c2570;
 .inputfield {
   p {
-    font-size: 18px;
+    font-size: 16px;
     margin: 10px 0 2px 0;
-    font-weight: 500;
+    font-weight: 400;
     color: $header-text-color;
   }
   .inputfield-input {
@@ -67,5 +67,6 @@ $header-text-color: #0c2570;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     font-weight: 400;
+    font-size: 16px;
   }
 }

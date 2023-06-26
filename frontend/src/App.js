@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 import { Register, Login, Dashboard } from "./pages";
 import { NavBar } from "./layouts";
-import { Deposit } from "./pages";
+import { Deposit, TransferFund } from "./pages";
 function App() {
   return (
     <div className="container">
@@ -12,7 +12,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}>
           {/* <Route path='dashboard' element={<Dashboard/>}/> */}
         </Route>
-        <Route path="/deposit" element={<Deposit />} />
+        <Route path="/transferFund" element={<TransferFund />} />
       </Routes>
     </div>
   );

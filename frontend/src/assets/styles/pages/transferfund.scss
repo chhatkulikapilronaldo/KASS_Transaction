@@ -1,0 +1,117 @@
+.transferFund {
+  background-color: rgba(0, 0, 0, 0.678);
+  height: 100vh;
+  .transferFund-maindiv {
+    margin: auto;
+    width: max-content;
+    padding: 32px;
+    .transferFund-form {
+      background-color: white;
+      display: flex;
+      position: relative;
+      margin: auto;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 16px;
+      border-radius: 10px;
+      padding: 16px;
+      flex-wrap: wrap;
+      .close {
+        position: absolute;
+        right: -30px;
+        top: -30px;
+        svg {
+          font-size: 40px;
+          color: white;
+        }
+      }
+      .senderDetails {
+        // border: 1px solid black;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        .accountdetails {
+          //   border: 1px solid black;
+          //   border: 1px solid black;
+          .senderaccount {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 10px;
+            .senderAmount {
+              font-weight: bold;
+              font-size: 18px;
+              line-height: 2;
+              color: rgb(2, 1, 58);
+            }
+            .hideamount {
+              svg {
+                color: gray;
+                cursor: pointer;
+              }
+            }
+          }
+          .accounttype,
+          .accountNumber {
+            color: rgb(100, 100, 100);
+            font-size: 14px;
+            line-height: 2;
+            font-weight: 500;
+          }
+
+          .account-button {
+            display: flex;
+            flex-flow: row-reverse;
+            flex: 2;
+            button {
+              font-size: 12px;
+              padding: 5px 10px;
+              font-weight: 600;
+            }
+          }
+        }
+        .transfer-image {
+          img {
+            width: 400px;
+          }
+        }
+      }
+      .receiverDetails {
+        // border: 1px solid black;
+        padding: 16px;
+        .fund-transfer {
+          margin-top: 20px;
+          font-size: 15px;
+        }
+        form {
+          input {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 855px) {
+  .transferFund {
+    .transferFund-maindiv {
+      .transferFund-form {
+        flex-direction: column;
+        gap: 0px;
+        .senderDetails {
+          gap: 0px;
+          .transfer-image {
+            img {
+              display: none;
+            }
+          }
+        }
+        .receiverDetails {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
