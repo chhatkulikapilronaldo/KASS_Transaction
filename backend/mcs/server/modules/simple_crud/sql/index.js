@@ -5,7 +5,8 @@
     create: require('./create'),
     login: require('./login'),
     update: require('./updatePin'),
-    deposit: require('./deposit')
-    //details: require('./detailsuser')
+    deposit: require('./deposit'),
+    getInfo: require('./getinfo'),
+    details: require('./details')
   };
 })();

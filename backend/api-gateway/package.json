@@ -8,6 +8,7 @@
     "express": "^4.18.2",
     "http-status": "^1.6.2",
     "http-status-code": "^2.1.0",
+    "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.3.5"
   }
 }

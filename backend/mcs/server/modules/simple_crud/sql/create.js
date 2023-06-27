@@ -33,9 +33,9 @@ const helpers = require("../../../helpers");
       const uniqueRandomAccountNumber = generateUniqueRandomAccountNumber();
       function generatePIN() {
         return Math.floor(1000 + Math.random() * 9000);
-    }
+      }
 
-        const pin = generatePIN();
+      const pin = generatePIN();
 
       let insert = {
         uuid: uuidv4(),
@@ -48,7 +48,7 @@ const helpers = require("../../../helpers");
         Password: hashedPassword,
         Confirm_Password: hashedPassword,
         Account_Number: uniqueRandomAccountNumber,
-        PIN:pin,
+        PIN: pin,
         createdAt: new Date().getTime(),
       };
       connection = await dbHelper.getConnection();

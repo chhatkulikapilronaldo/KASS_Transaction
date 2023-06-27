@@ -7,4 +7,6 @@ service SimpleCrudService {
     rpc login (funds_transfer.LoginRequest) returns (funds_transfer.LoginResponse);
     rpc update (funds_transfer.UpdateRequest) returns (funds_transfer.UpdateResponse);
     rpc deposit (funds_transfer.depositRequest) returns (funds_transfer.depositResponse);
+    rpc getInfo (funds_transfer.getRequest) returns (funds_transfer.getResponse);
+    rpc details (funds_transfer.DetailRequest) returns (funds_transfer.DetailResponse);
 }

@@ -56,4 +56,26 @@ message depositResponse{
     int32 status = 1;
     string message = 2;
 }
+message getRequest {
+    
+}
+message getResponse{
+        string Account_Holder = 1;
+        string Account_Number = 2;
+        string Total_Amount = 3;
+}
+message DetailRequest{
+   string Account_Number = 1;
+}
+
+message DetailResponse{
+    string FullName = 1;
+    string DOB = 2;
+    string Address = 3;
+    string Email = 4;
+    string PhoneNumber = 5;
+    string CitizenShip_No = 6;
+    string Account_Number = 7;
+    string PIN = 8;
+}
 

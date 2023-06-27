@@ -28,12 +28,17 @@ const { where } = require("sequelize");
           }
           return response;
         }
-        response.status = true;
-        response.message = "OldPIN_Number does not exit";
+        else{
+          response.status = false;
+          response.message = "New PIn and Old Pin are not same ";
+        }
+        return response;
+       
       } else {
-        response.status = true;
-        response.message = "New and confirm pin are not same";
+        response.status = false;
+        response.message = "OldPIN_Number does not exist";
       }
+      return response
     } catch (error) {
       throw error;
     } finally {
