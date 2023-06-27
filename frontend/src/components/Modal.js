@@ -25,12 +25,17 @@ export const Modal = ({
   };
 
   const [validPass, setValidPass] = useState(false);
+  const [validPin, setValidPin] = useState(false);
   const { formData, handleFormInput } = useFormHandling({
     OldPassword: "",
     NewPassword: "",
     ConfirmPassword: "",
+    OldPIN_Number: "",
+    NewPIN_Number: "",
+    ConfirmPIN_Number: "",
   });
-  const { putInformation, updateUserPassword } = usePutData(
+
+  const { putInformation, updateUserInformation } = usePutData(
     ankit_PassUpdate_url,
     formData
   );
@@ -53,14 +58,32 @@ export const Modal = ({
       setValidPass(false);
     }
   }, [formData.OldPassword]);
+  useEffect(() => {
+    if (formData.OldPIN_Number) {
+      setValidPin(true);
+    } else if (formData.OldPIN_Number.length === 0) {
+      setValidPin(false);
+    } else {
+      setValidPin(false);
+    }
+  }, [formData.OldPIN_Number]);
 
-  console.log(formData);
-  console.log(putInformation);
+  // console.log(putInformation);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUserPassword();
+    if (transType === "Change Password") {
+      delete formData.ConfirmPIN_Number;
+      delete formData.NewPIN_Number;
+      delete formData.OldPIN_Number;
+    } else {
+      delete formData.ConfirmPassword;
+      delete formData.NewPassword;
+      delete formData.OldPassword;
+    }
+    updateUserInformation();
   };
+
   return (
     <div className="modal">
       <div className="modal__wrapper">
@@ -83,12 +106,14 @@ export const Modal = ({
               />
               {transType === "Change Password" ? (
                 validPass ? (
-                  <span>*Old password must be matched*</span>
+                  <span>*Old password must be matched</span>
                 ) : (
                   " "
                 )
+              ) : validPin ? (
+                <span>*Old pin must be matched</span>
               ) : (
-                <p>hello</p>
+                " "
               )}
 
               <InputField

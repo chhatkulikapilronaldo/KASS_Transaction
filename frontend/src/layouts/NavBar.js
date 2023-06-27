@@ -1,29 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import logo from "../assets/images/logo.png";
 import profile from "../assets/images/profile.png";
 import { Modal } from "../components/Modal";
-import { Outlet} from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Deposit } from "../pages";
-
-export const NavBar = ({ displayModalState, displayPinModalState}) => {
-
+import { UserDataContext } from "../hooks/UserDataContext";
+export const NavBar = ({ displayModalState, displayPinModalState }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+
   const [showDepositModal, setShowDepositModal] = useState(false);
+  const individualUserData = useContext(UserDataContext);
+
   const handleClick = () => {
     setIsVisible(!isVisible);
   };
   const handleChangePass = () => {
     displayModalState(false);
-  };
+  }; 
   const handleChangePin = () => {
     displayPinModalState(false);
   };
-  const depositModal=()=>{
+  const depositModal = () => {
     setShowDepositModal(true);
-    setShowModal(false);
- }
+  };
+  console.log(individualUserData);
   return (
     <div className="navbar__wrapper">
       <div className="navbar-image">
@@ -33,24 +34,30 @@ export const NavBar = ({ displayModalState, displayPinModalState}) => {
         <div className="navbar-links">
           <ul>
             <li onClick={depositModal}>Deposit</li>
-            {
-              showDepositModal === true? (
-                <Deposit displayState={setShowModal}/>
-              ): (" ")
-            }
-            <li>FundTransfer</li>
+            {showDepositModal === true ? (
+              <Deposit displayState={setShowDepositModal} />
+            ) : (
+              " "
+            )}
+            <Link to="/transferfund">
+              {" "}
+              <li>FundTransfer</li>
+            </Link>
           </ul>
         </div>
       </div>
 
       <div className="navbar-user">
         <div className="user-profile">
-          <img src={profile} alt="profileimage" onClick={handleClick} />
           <p>
             Welcome!!
             <br />
-            <span>Username</span>
+            <span>{individualUserData?.Account_Holder}</span>
+            {/* <span>Suraj Pulami Magar</span> */}
           </p>
+          <div className="profileImage">
+            <img src={profile} alt="profileimage" onClick={handleClick} />
+          </div>
         </div>
         {isVisible === true ? (
           <div className="user-setting">

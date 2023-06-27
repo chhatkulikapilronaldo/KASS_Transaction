@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.scss";
-import { Register, Login, Dashboard } from "./pages";
+import { Register, Login, Dashboard, TransferFund } from "./pages";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <Route exact path="/" element={<Login/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />}>
-          {/* <Route path='dashboard' element={<Dashboard/>}/> */}
+          <Route path='transferfund' element={<TransferFund/>}/>
         </Route>
       </Routes>
     </div>

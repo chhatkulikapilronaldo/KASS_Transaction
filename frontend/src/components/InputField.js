@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export const InputField = ({ type, name, handleInput, label, icon }) => {
+export const InputField = ({ type, name, handleInput, label, icon, value }) => {
   return ( 
     <div className="inputfield">
       {/* <label htmlFor={name}>{label}I AM LABEL</label>  */}
@@ -9,7 +9,8 @@ export const InputField = ({ type, name, handleInput, label, icon }) => {
         <FontAwesomeIcon icon={icon} />
         <input
           type={type}
-          name={name}        
+          name={name}   
+          value={value}     
           onChange={handleInput}
           placeholder={`Enter ${name}`} required
         />

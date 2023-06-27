@@ -58,13 +58,12 @@ export const Login = () => {
       console.log("hello");
     } else {
       localStorage.setItem("userToken", postInformation.token);
-      navigate("/register");
+      navigate("/dashboard");
     }
   }, [postInformation]);
   const handleSubmit = (e) => {
     e.preventDefault();
     postUserInfo();
-
   };
   return (
     <div className="login">

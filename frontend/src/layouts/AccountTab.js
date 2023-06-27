@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { faFolderClosed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,11 +11,12 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { Button } from "../components/Button";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-export const AccountTab = () => {
-  const [showAmount, setShowAmount] = useState(false);
+import { UserDataContext } from "../hooks/UserDataContext";
 
+export const AccountTab = () => {
+  const individualAccountInformation = useContext(UserDataContext);
+  const [showAmount, setShowAmount] = useState(false);
 
   const toggleAmount = () => {
     setShowAmount(!showAmount);
@@ -65,6 +66,7 @@ export const AccountTab = () => {
       amt: 2100,
     },
   ];
+
   return (
     <div className="account__wrapper">
       <div className="account-text">
@@ -74,18 +76,28 @@ export const AccountTab = () => {
           </i>
           <h5>Global Smart Plus</h5>
         </div> */}
+
         <p className="holder-name">Account Holder Name: </p>
-        <h4>Max Waltson</h4>
+        <h4>{individualAccountInformation?.Account_Holder}</h4>
         <p className="holder-acc">Account number:</p>
-        <h4>12452113252452</h4>
+        <h4>{individualAccountInformation?.Account_Number}</h4>
         <p className="holder-balc">Total Amount</p>
         <h4>
           {" "}
           {/* {showAmount ? (
            hideAmount
           ) : null}{" "} */}
-          {showAmount ? <span>120000 &nbsp; &nbsp;</span> : <span>XXXXXX  &nbsp; &nbsp;</span>}
-         <i> <FontAwesomeIcon onClick={toggleAmount} icon={faEye} /></i>
+          {showAmount ? (
+            <span>
+              {individualAccountInformation?.Total_Amount} &nbsp; &nbsp;
+            </span>
+          ) : (
+            <span>XXXXXX &nbsp; &nbsp;</span>
+          )}
+          <i>
+            {" "}
+            <FontAwesomeIcon onClick={toggleAmount} icon={faEye} />
+          </i>
         </h4>
       </div>
 

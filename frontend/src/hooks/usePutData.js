@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const usePutData = (requestURL, putData) => {
   const [putInformation, setputInformation] = useState();
-  const updateUserPassword = async () => {
+
+  const updateUserInformation = async () => {
     try {
       await axios
         .put(requestURL, putData, {
@@ -26,7 +27,7 @@ const usePutData = (requestURL, putData) => {
   };
   return {
     putInformation,
-    updateUserPassword,
+    updateUserInformation,
   };
 };
 

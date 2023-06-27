@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { InputField, Button } from "../components";
 import {
   faSackDollar,
@@ -10,22 +10,42 @@ import {
 import { Modal } from "../components/Modal";
 import ModalImage from "../assets/images/deposit.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export const Deposit = ({displayState}) => {
-//   const [displayState, setDisplayState] = useState(false);
-  const handleModalClose = () => {
-    displayState(true);
-    console.log("clicked");
-};
+import useFormHandling from "../hooks/useFormHandling";
+import usePostData from "../hooks/usePostData";
+import { UserDataContext } from "../hooks/UserDataContext";
+import useGetData from "../hooks/useGetData";
 
+export const Deposit = ({ displayState }) => {
+  //   const [displayState, setDisplayState] = useState(false);
+  const deposit_URL = "http://10.7.1.183:9000/users/deposit_Fund";
+  const kapil_Deposit_Url = "http://10.7.1.13:8080/users/depositAmount";
+  const { getInformation, getUserInfo } = useGetData(kapil_Deposit_Url);
+  const accountNumber = useContext(UserDataContext);
+
+  const handleModalClose = () => {
+    displayState(false);
+  };
+  console.log(displayState);
   const handleSubmit = (e) => {
     e.preventDefault();
+    postUserInfo();
   };
+
+  const { formData, handleFormInput } = useFormHandling({
+    Account_Number: "",
+    Amount: "",
+    remarks: "",
+  });
+  const { postInformation, postUserInfo } = usePostData(deposit_URL, formData);
+  // useEffect(() => {
+  //   getUserInfo();
+  // }, []);
   return (
     <>
       <div className="modal">
         <div className="modal__wrapper">
           <div className="modal-clear">
-            <FontAwesomeIcon icon={faClose} onClick={handleModalClose}/>
+            <FontAwesomeIcon icon={faClose} onClick={handleModalClose} />
           </div>
           <div className="modal-form">
             <div className="form-image">
@@ -38,23 +58,23 @@ export const Deposit = ({displayState}) => {
                   name="Account_Number"
                   label="A/C Number"
                   icon={faFolderOpen}
-                  value="1542658974589652"
+                  value={accountNumber.Account_Number}
                   disability="true"
-                  // handleInput={handleFormInput}
+                  handleInput={handleFormInput}
                 />
                 <InputField
                   type="number"
                   name="Amount"
                   label="Amount"
                   icon={faSackDollar}
-                  // handleInput={handleFormInput}
+                  handleInput={handleFormInput}
                 />
                 <InputField
                   type="text"
                   name="Remarks"
                   label="Remarks"
                   icon={faPencilSquare}
-                  // handleInput={handleFormInput}
+                  handleInput={handleFormInput}
                 />
                 <Button className="modal-button" type="Submit" name="Deposit" />
               </form>
