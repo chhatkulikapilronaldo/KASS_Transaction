@@ -7,6 +7,8 @@
     update: require('./updatePin'),
     deposit: require('./deposit'),
     getInfo: require('./getinfo'),
-    details: require('./details')
+    details: require('./details'),
+    updatePassword: require('./updatePassword'),
+    transfer: require('./transfer')
   };
 })();

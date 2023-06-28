@@ -9,7 +9,9 @@
   router.put("/updatePin", controller.updateUserPIN);
   router.post("/depositAmount", controller.depositAmount);
   router.get("/getinfo", controller.getInfoUser);
-  router.get("/detailUser",controller.detailUser)
+  router.get("/detailUser",controller.detailUser);
+  router.put('/updatePassword',controller.updateUserPassword);
+  router.post("/fundTransfer",controller.transferMoney);
 
   module.exports = router;
 })();

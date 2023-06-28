@@ -24,7 +24,7 @@ const helpers = require("../../../helpers");
       let deposits = {
         uuid:allinfo[0][0].uuid,
         Account_Number:allinfo[0][0].Account_Number,
-
+        user_id:allinfo[0][0].id,
         Amount:call.Amount,
         Remarks:call.Remarks
       };

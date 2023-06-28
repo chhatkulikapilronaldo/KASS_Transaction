@@ -14,7 +14,7 @@
       let sql1 = `SELECT u.FullName AS Account_Holder, u.Account_Number, sum(d.Amount) as Total_Amount 
     from Users As u
     INNER JOIN 
-    deposits as d on u.uuid = d.uuid
+    deposits as d on u.id= d.user_id
     GROUP BY u.FullName, u.Account_Number
     LIMIT 0, 2000;`;
       const [rows1] = await connection.query(sql1);

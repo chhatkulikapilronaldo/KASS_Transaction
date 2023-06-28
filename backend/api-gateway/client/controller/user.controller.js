@@ -146,10 +146,9 @@ exports.getInfoUser = async (req, res) => {
   }
 };
 exports.detailUser = async (req, res) => {
-  
   const requestObjects = {
     Account_Number: req.body.Account_Number,
-  }
+  };
 
   client.details(requestObjects, (error, response) => {
     if (error) {
@@ -160,4 +159,75 @@ exports.detailUser = async (req, res) => {
       res.status(200).send(response);
     }
   });
+};
+exports.transferMoney = async (req, res) => {
+  const JWT = require("jsonwebtoken");
+  const token = req.headers.authorization;
+  const secret_key = process.env.JWT_SECRET;
+  const requestObject = {
+    token: req.headers.authorization,
+
+    Receiver_Account: req.body.Receiver_Account,
+    Amount: req.body.Amount,
+    Remarks: req.body.Remarks,
+  };
+  if (token) {
+    JWT.verify(token, secret_key, (err, decoded) => {
+      if (err) {
+        console.error("Unverified Token", err.message);
+        res.status(404).send("Unverified User");
+      } else {
+        console.log("Token verified succesfully", decoded);
+        client.transfer(requestObject, (error, response) => {
+          if (error) {
+            //console.error("Error listing records:", error);
+            res.status(400).send(error);
+          } else {
+            // console.log("List response:", response);
+            res.status(200).send(response);
+          }
+        });
+      }
+    });
+  }
+};
+exports.updateUserPassword = async (req, res) => {
+  const JWT = require("jsonwebtoken");
+  const token = req.headers.authorization;
+  const secretKey = process.env.JWT_SECRET;
+  const requestObject = {
+    OldPassword: req.body.OldPassword,
+    NewPassword: req.body.NewPassword,
+    ConfirmPassword: req.body.ConfirmPassword,
+  };
+
+  if (
+    requestObject.OldPassword ||
+    requestObject.NewPassword ||
+    requestObject.ConfirmPassword
+  ) {
+    JWT.verify(token, secretKey, (err, decoded) => {
+      if (err) {
+        console.error("Token verification failed:", err.message);
+        res.status(404).send({
+          Message: "Unverified User, please provide token",
+        });
+      } else {
+        // Token verification successful
+        console.log("Token verified successfully:", decoded);
+        client.updatePassword(requestObject, (error, response) => {
+          if (error) {
+            //console.error("Error listing records:", error);
+            //res.status(400).send("Invalid User details");
+            res.status(400).send(error);
+          } else {
+            // console.log("List response:", response);
+            res.status(200).send(response);
+          }
+        });
+      }
+    });
+  } else {
+    res.status(400).send("Invalid details");
+  }
 };

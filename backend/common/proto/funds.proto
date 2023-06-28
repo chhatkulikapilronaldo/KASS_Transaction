@@ -77,5 +77,26 @@ message DetailResponse{
     string CitizenShip_No = 6;
     string Account_Number = 7;
     string PIN = 8;
+    string Total_Amount = 9;
+}
+message transferRequest{
+    string token = 1;
+    string Receiver_Account = 2;
+    string Amount = 3;
+     string Remarks = 4;
+}
+message transferResponse{
+    int32 status = 1;
+    string message = 2;
+}
+message updatePassRequest{
+    string OldPassword = 1;
+    string NewPassword = 2;
+    string ConfirmPassword = 3;
+  
+}
+message updatePassResponse{
+    int32 status = 1;
+    string message = 2; 
 }
 
