@@ -1,12 +1,13 @@
 .transferFund {
-    background-color: rgba(0, 0, 0, 0.678);
-    height: 100vh;
+    // background-color: rgba(0, 0, 0, 0.678);
+    // height: 100vh;
     .transferFund-maindiv {
       margin: auto;
       width: max-content;
       padding: 32px;
       .transferFund-form {
         background-color: white;
+        border: 1px solid #333;
         display: flex;
         position: relative;
         margin: auto;
@@ -16,15 +17,15 @@
         border-radius: 10px;
         padding: 16px;
         flex-wrap: wrap;
-        .close {
-          position: absolute;
-          right: -30px;
-          top: -30px;
-          svg {
-            font-size: 40px;
-            color: white;
-          }
-        }
+        // .close {
+        //   position: absolute;
+        //   right: -30px;
+        //   top: -30px;
+        //   svg {
+        //     font-size: 40px;
+        //     color: white;
+        //   }
+        // }
         .senderDetails {
           // border: 1px solid black;
           padding: 16px;

@@ -5,6 +5,8 @@ import register from "../assets/images/registerimg.png";
 import { Link, useNavigate } from "react-router-dom";
 import useFormHandling from "../hooks/useFormHandling";
 import { faPhone, faLock } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import usePostData from "../hooks/usePostData";
 import {
   faUser,
@@ -34,6 +36,7 @@ export const Register = () => {
   const [validname, setValidName] = useState(false);
   const [passwordMatch, setPassWordMatch] = useState(false);
 
+  const notify = () => toast("Sucessfully Registered!!!");
   useEffect(() => {
     if (formData.FullName.match(Name)) {
       setValidName(true);
@@ -75,6 +78,8 @@ export const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     postUserInfo();
+    notify();
+    navigate('/');
     // if (postInformation.status === 200) {
     //   navigate("/");
     // }
@@ -168,6 +173,7 @@ export const Register = () => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

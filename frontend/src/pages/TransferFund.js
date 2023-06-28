@@ -7,11 +7,11 @@ import {
   faMoneyBill,
   faPenToSquare,
   faClose,
-  faBullseye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import fundTransfer from "../assets/images/fundtransfer.png";
 import { InputField, Button } from "../components";
+import { Outlet } from "react-router-dom";
 export const TransferFund = () => {
   const [hideAmount, setHideAmount] = useState(false);
   return (
@@ -19,16 +19,16 @@ export const TransferFund = () => {
       <div className="transferFund">
         <div className="transferFund-maindiv">
           <div className="transferFund-form">
-            <div className="close">
+            {/* <div className="close">
               <FontAwesomeIcon icon={faClose} />
-            </div>
+            </div> */}
             <div className="senderDetails">
               <div className="accountdetails">
                 <h3>Transfer From</h3>
                 <p className="senderaccount">
                   <span className="senderAmount">
                     NPR.
-                    {hideAmount ? " XXXXXXXX" : " 10,000"}
+                    {hideAmount ? " XXXXXX" : " 10,000"}
                   </span>
                   <span className="hideamount">
                     {hideAmount ? (

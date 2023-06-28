@@ -5,13 +5,29 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import password from "../assets/images/register.png";
 import useGetData from "../hooks/useGetData";
 import { UserDataContext } from "../hooks/UserDataContext";
+import { Deposit } from "./Deposit";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import usePostData from "../hooks/usePostData";
 const dashboarddisplay_URL = "http://10.7.1.183:9000/users/getInfo";
 export const Dashboard = () => {
+  const navigate = useNavigate();
   const [modalPasswordState, setModalPasswordState] = useState(true);
   const [modalPinState, setModalPinState] = useState(true);
   const { getInformation, getUserInfo } = useGetData(dashboarddisplay_URL);
+
+  const [showDepositModal, setShowDepositModal] = useState(false);
+  const accountSection = () => {
+    navigate("accountTab");
+  };
+  const fundtransferSection = () => {
+    navigate("/transferfund");
+  };
+  const depositModal = () => {
+    setShowDepositModal(true);
+  };
+
   useEffect(() => {
-    getUserInfo();
+    getInformation?.Total_Amount ? console.log("hello") : getUserInfo();
   }, []);
   console.log(getInformation);
   return (
@@ -53,13 +69,28 @@ export const Dashboard = () => {
               modalImage={password}
             />
           )}
-        </div>
 
-        {/* .......Dashboard Body.......... */}
-        <div className="dashboard-body">
-          <AccountTab />
+          {/* .......Dashboard Body.......... */}
+
+          <div className="dashboard-body">
+            <div className="dashboard-links">
+              <ul>
+                <li onClick={accountSection}>Account</li>
+
+                <li onClick={depositModal}>Deposit</li>
+                {showDepositModal === true ? (
+                  <Deposit displayState={setShowDepositModal} />
+                ) : (
+                  " "
+                )}
+                <li onClick={fundtransferSection}>FundTransfer</li>
+              </ul>
+            </div>
+          </div>
+          {/* <AccountTab /> */}
         </div>
       </UserDataContext.Provider>
+      <Outlet />
     </div>
   );
 };

@@ -14,7 +14,7 @@ import useFormHandling from "../hooks/useFormHandling";
 import usePostData from "../hooks/usePostData";
 import { UserDataContext } from "../hooks/UserDataContext";
 import useGetData from "../hooks/useGetData";
-
+import { useNavigate } from "react-router-dom";
 export const Deposit = ({ displayState }) => {
   //   const [displayState, setDisplayState] = useState(false);
   const deposit_URL = "http://10.7.1.183:9000/users/deposit_Fund";
@@ -26,10 +26,6 @@ export const Deposit = ({ displayState }) => {
     displayState(false);
   };
   console.log(displayState);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    postUserInfo();
-  };
 
   const { formData, handleFormInput } = useFormHandling({
     Account_Number: "",
@@ -37,9 +33,17 @@ export const Deposit = ({ displayState }) => {
     remarks: "",
   });
   const { postInformation, postUserInfo } = usePostData(deposit_URL, formData);
-  // useEffect(() => {
-  //   getUserInfo();
-  // }, []);
+  useEffect(() => {
+    if (postInformation === undefined) {
+      console.log("hello");
+    } else {
+      displayState(false);
+    }
+  }, [postInformation]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postUserInfo();
+  };
   return (
     <>
       <div className="modal">

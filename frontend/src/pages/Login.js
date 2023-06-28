@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import signinImage from "../assets/images/signin.png";
 import { faPhone, faLock } from "@fortawesome/free-solid-svg-icons";
 import useFormHandling from "../hooks/useFormHandling";
-import usePostData from "../hooks/usePostData";
+
+import useLogin from "../hooks/useLogin";
 const numbers = /^(97)([0-9]{8})$/g;
 const numberOnly = /^(98)([0-9]{8})$/g;
 const ankit_url = "http://10.7.1.183:9000/users/login";
@@ -18,7 +19,7 @@ export const Login = () => {
     PhoneNumber: "",
     Password: "",
   });
-  const { postInformation, postUserInfo } = usePostData(ankit_url, formData);
+  const { postInformation, postUserInfo } = useLogin(ankit_url, formData);
   useEffect(() => {
     //validating phone number
     if (formData.PhoneNumber.length === 0) {
@@ -51,7 +52,7 @@ export const Login = () => {
       setValidLogin(false);
     }
   }, [validNum, validPass]);
-  console.log(postInformation);
+  console.log(formData);
 
   useEffect(() => {
     if (postInformation === undefined) {
@@ -103,10 +104,10 @@ export const Login = () => {
               </span>
             )}
             {validLogin ? (
-              <Button type="Submit" name="Login" disability="false" />
+              <Button type="submit" name="Login" disability="false" />
             ) : (
               <Button
-                type="Submit"
+                type="submit"
                 name="Login"
                 className="validLogin"
                 disability="true"

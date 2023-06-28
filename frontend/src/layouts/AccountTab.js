@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { faFolderClosed } from "@fortawesome/free-solid-svg-icons";
+import { faEyeSlash, faFolderClosed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ResponsiveContainer,
@@ -88,16 +88,24 @@ export const AccountTab = () => {
            hideAmount
           ) : null}{" "} */}
           {showAmount ? (
-            <span>
-              {individualAccountInformation?.Total_Amount} &nbsp; &nbsp;
-            </span>
+            <>
+              <span>
+                {individualAccountInformation?.Total_Amount} &nbsp; &nbsp;
+                <i>
+                  <FontAwesomeIcon icon={faEye} onClick={toggleAmount} />
+                </i>
+              </span>
+            </>
           ) : (
-            <span>XXXXXX &nbsp; &nbsp;</span>
+            <>
+              <span>XXXXXX &nbsp; &nbsp;</span>
+              <i>
+                {" "}
+                <FontAwesomeIcon onClick={toggleAmount} icon={faEyeSlash} />
+              </i>
+            </>
           )}
-          <i>
-            {" "}
-            <FontAwesomeIcon onClick={toggleAmount} icon={faEye} />
-          </i>
+          <i> </i>
         </h4>
       </div>
 
