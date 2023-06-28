@@ -1,0 +1,131 @@
+.paymentdetail {
+  padding: 16px;
+  .wrapper {
+    // border: 1px solid black;
+    margin: auto;
+    padding: 16px;
+    // width: max-content;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 0 3px rgb(180, 180, 180);
+    // background-color: #f8f8f8;
+    position: relative;
+    overflow: hidden;
+    .watermark {
+      z-index: -1;
+      position: absolute;
+      top: -220px;
+      right: -510px;
+      img {
+        height: 100%;
+        width: 100%;
+        opacity: 0.1;
+      }
+    }
+    .background {
+      width: 350px;
+      height: 350px;
+      border-radius: 100%;
+      background-color: #10428b;
+      background-color: gray;
+      z-index: -1;
+      position: absolute;
+      left: -150px;
+      bottom: -150px;
+      opacity: 0.1;
+    }
+    .heading,
+    .amount,
+    .acnumber,
+    .receiverbank,
+    .remarks,
+    .fromac,
+    .proceedbutton {
+      //   border: 1px solid black;
+      // background-color: #f8f8f8;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px;
+      gap: 16px;
+      h5 {
+        font-size: 16px;
+        font-weight: 500;
+      }
+      p {
+        color: rgb(80, 80, 80);
+        text-justify: auto;
+        font-weight: 600;
+      }
+    }
+    .heading {
+      // margin-bottom: 10px;
+      h3 {
+        position: relative;
+
+        &::after {
+          content: "";
+          background-color: #10428b;
+          width: 95px;
+          height: 5px;
+          color: #cc0001;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          top: 20px;
+        }
+      }
+      span {
+        position: absolute;
+        background-color: #cc0001;
+        width: 95px;
+        height: 5px;
+        color: #cc0001;
+        position: absolute;
+        bottom: 0;
+        top: 20px;
+        right: 0;
+      }
+      img {
+        width: 100px;
+        height: 50px;
+      }
+    }
+    .proceedbutton {
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 8px;
+      .backbutton {
+        background-color: #cc0001;
+        color: #f8f8f8;
+        border: 1px solid #cc0001;
+        font-size: 15px;
+        padding: 10px 20px;
+        transition: 250ms ease;
+        &:hover {
+          background-color: #f8f8f8;
+          border: 1px solid #cc0001;
+          color: #cc0001;
+        }
+      }
+      .proceed {
+        font-size: 15px;
+        padding: 10px 20px;
+        border: 1px solid #10428b;
+        transition: 250ms ease;
+        background-color: #10428b;
+        &:hover {
+          background-color: #f8f8f8;
+          color: #10428b;
+        }
+      }
+    }
+    .amount {
+      p {
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -35,7 +35,7 @@
 // }
 
 $text-font: 16px;
-$header-text-color: #0c2570;
+$header-text-color: #10428b;
 .inputfield {
   p {
     font-size: 16px;
@@ -50,8 +50,9 @@ $header-text-color: #0c2570;
   }
   svg {
     padding: 14px;
-    background-color: #091540;
+    background-color: #10428b;
     color: white;
+    
     border-radius: 5px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -62,7 +63,7 @@ $header-text-color: #0c2570;
     outline: none;
     border-radius: 5px;
     border: none;
-    border: 1px solid rgb(14, 12, 12);
+    border: 1px solid #10428b;
     border-left: none;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;

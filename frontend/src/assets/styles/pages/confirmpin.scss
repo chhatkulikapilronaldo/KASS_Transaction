@@ -1,0 +1,36 @@
+.confirmpin {
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.781);
+  height: 100vh;
+  .wrapper {
+    padding: 16px;
+    width: max-content;
+    margin: auto;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    box-shadow: 0 0 3px gray;
+    .confirm-form {
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .inputfield {
+        p {
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 16px;
+        }
+      }
+      .confirm-button {
+        background-color: #10428b;
+        border: 1px solid #10428b;
+        transition: 250ms ease;
+        &:hover {
+          background-color: white;
+          color: #10428b;
+        }
+      }
+    }
+  }
+}
