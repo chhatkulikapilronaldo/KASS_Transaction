@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { faEyeSlash, faFolderClosed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  ResponsiveContainer,
+
   AreaChart,
   Area,
   XAxis,
@@ -21,17 +21,22 @@ export const AccountTab = () => {
   const toggleAmount = () => {
     setShowAmount(!showAmount);
   };
-
+const month= [
+  "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+]
   const data = [
     {
+      month: {month}
+    },
+    {
       name: "Page A",
-      uv: 4000,
+      uv: 3000,
       pv: 2400,
       amt: 2400,
     },
     {
       name: "Page B",
-      uv: 3000,
+      uv: 3500,
       pv: 1398,
       amt: 2210,
     },
@@ -46,25 +51,7 @@ export const AccountTab = () => {
       uv: 2780,
       pv: 3908,
       amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
+    }
   ];
 
   return (
@@ -118,11 +105,11 @@ export const AccountTab = () => {
         {/* <ResponsiveContainer> */}
         <AreaChart width={500} height={400} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis dataKey="name"/>
+          <YAxis  />
           <Tooltip />
-          <Legend />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#222222" />
+          {/* <Legend /> */}
+          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="grey" />
         </AreaChart>
         {/* </ResponsiveContainer> */}
       </div>

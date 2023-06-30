@@ -3,5 +3,6 @@ import {Login} from './Login';
 import { Dashboard } from './Dashboard';
 import { Deposit } from './Deposit';
 import {TransferFund} from './TransferFund';
+import { PaymentDetail } from './PaymentDetail';
 
-export {Register, Login, Dashboard, Deposit, TransferFund};
+export {Register, Login, Dashboard, Deposit, TransferFund, PaymentDetail};

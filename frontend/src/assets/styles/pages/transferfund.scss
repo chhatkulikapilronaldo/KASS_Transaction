@@ -4,7 +4,7 @@
     .transferFund-maindiv {
       margin: auto;
       width: max-content;
-      padding: 32px;
+      // padding: 32px;
       .transferFund-form {
         background-color: white;
         border: 1px solid #333;
@@ -17,15 +17,7 @@
         border-radius: 10px;
         padding: 16px;
         flex-wrap: wrap;
-        // .close {
-        //   position: absolute;
-        //   right: -30px;
-        //   top: -30px;
-        //   svg {
-        //     font-size: 40px;
-        //     color: white;
-        //   }
-        // }
+    
         .senderDetails {
           // border: 1px solid black;
           padding: 16px;

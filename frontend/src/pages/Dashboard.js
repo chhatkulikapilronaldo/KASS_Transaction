@@ -5,9 +5,7 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import password from "../assets/images/register.png";
 import useGetData from "../hooks/useGetData";
 import { UserDataContext } from "../hooks/UserDataContext";
-import { Deposit } from "./Deposit";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import usePostData from "../hooks/usePostData";
+import {  Outlet, useNavigate } from "react-router-dom";
 const dashboarddisplay_URL = "http://10.7.1.183:9000/users/getInfo";
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -15,16 +13,16 @@ export const Dashboard = () => {
   const [modalPinState, setModalPinState] = useState(true);
   const { getInformation, getUserInfo } = useGetData(dashboarddisplay_URL);
 
-  const [showDepositModal, setShowDepositModal] = useState(false);
-  const accountSection = () => {
-    navigate("accountTab");
-  };
-  const fundtransferSection = () => {
-    navigate("/transferfund");
-  };
-  const depositModal = () => {
-    setShowDepositModal(true);
-  };
+  // const [showDepositModal, setShowDepositModal] = useState(false);
+  // const accountSection = () => {
+  //   navigate("accountTab");
+  // };
+  // const fundtransferSection = () => {
+  //   navigate("/transferfund"); 
+  // };
+  // const depositModal = () => {
+  //   setShowDepositModal(true);
+  // };
 
   useEffect(() => {
     getInformation?.Total_Amount ? console.log("hello") : getUserInfo();
@@ -73,7 +71,7 @@ export const Dashboard = () => {
           {/* .......Dashboard Body.......... */}
 
           <div className="dashboard-body">
-            <div className="dashboard-links">
+            {/* <div className="dashboard-links">
               <ul>
                 <li onClick={accountSection}>Account</li>
 
@@ -85,7 +83,7 @@ export const Dashboard = () => {
                 )}
                 <li onClick={fundtransferSection}>FundTransfer</li>
               </ul>
-            </div>
+            </div> */}
           </div>
           {/* <AccountTab /> */}
         </div>

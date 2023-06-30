@@ -59,7 +59,7 @@ export const Login = () => {
       console.log("hello");
     } else {
       localStorage.setItem("userToken", postInformation.token);
-      navigate("/dashboard");
+      navigate("/dashboard/accountTab");
     }
   }, [postInformation]);
   const handleSubmit = (e) => {

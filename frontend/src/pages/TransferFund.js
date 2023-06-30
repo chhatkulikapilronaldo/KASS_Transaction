@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
@@ -6,14 +6,19 @@ import {
   faFolderOpen,
   faMoneyBill,
   faPenToSquare,
-  faClose,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import fundTransfer from "../assets/images/fundtransfer.png";
 import { InputField, Button } from "../components";
-import { Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export const TransferFund = () => {
+
+  const navigate = useNavigate();
   const [hideAmount, setHideAmount] = useState(false);
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    navigate('paymentdetail')
+  }
   return (
     <>
       <div className="transferFund">
@@ -58,7 +63,7 @@ export const TransferFund = () => {
             </div>
             <div className="receiverDetails">
               <h3>Receiver's Details</h3>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <InputField
                   type="text"
                   name="ReceiverBank"

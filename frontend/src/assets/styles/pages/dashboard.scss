@@ -23,22 +23,22 @@
       ul {
         display: flex;
         gap: 24px;
-        li,
-        a {
+        li{
           font-size: 18px;
           font-weight: 600;
           font-style: bold;
           cursor: pointer;
           color: rgb(15, 66, 138);
           padding: 5px 16px;
+          transition: 300ms ease;
           &:hover {
             background-color: rgb(15, 66, 138);
             color: #ffffff;
           }
-          // &.active {
-          //   background-color: rgb(15, 66, 138);
-          //   color: #ffffff;
-          // }
+          &.focus {
+            background-color: rgb(15, 66, 138);
+            color: #ffffff;
+          }
         }
       }
     }

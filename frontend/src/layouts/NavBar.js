@@ -3,10 +3,19 @@ import logo from "../assets/images/logo.png";
 import profile from "../assets/images/profile.png";
 
 import { UserDataContext } from "../hooks/UserDataContext";
+import { Outlet, useNavigate } from "react-router-dom";
+import { Deposit } from "../pages";
 export const NavBar = ({ displayModalState, displayPinModalState }) => {
+
+  var d= new Date();
+  var time = d.getHours();
   const [modalPasswordState, setModalPasswordState] = useState(true);
   const [modalPinState, setModalPinState] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const [showDepositModal, setShowDepositModal] = useState(false);
+  const navigate = useNavigate();
+
+
   const individualUserData = useContext(UserDataContext);
   const handleClick = () => {
     setIsVisible(!isVisible);
@@ -21,7 +30,15 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
     displayPinModalState(false);
     setModalPinState(false);
   };
-
+  const fundtransferSection = () => {
+    navigate("transferfund");
+  };
+  const depositModal = () => {
+    setShowDepositModal(true);
+  };
+  const accountSection = () => {
+    navigate("accountTab");
+  };
   return (
     <>
       <div className="navbar">
@@ -35,10 +52,10 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
           <div className="navbar-user">
             <div className="user-profile">
               <p>
-                Welcome!!
+                {time<12?"Good Morning!!":"Good Afternoon!!"}
                 <br />
                 <span>{individualUserData?.Account_Holder}</span>
-                {/* <span>Suraj Pulami Magar</span> */}
+                 {/* <span>Suraj Pulami Magar</span> */}
               </p>
               <div className="profileImage">
                 <img src={profile} alt="profileimage" onClick={handleClick} />
@@ -95,6 +112,22 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
             )}
           </div>
         </div>
+        <div className="dashboard-body">
+        <div className="dashboard-links">
+              <ul>
+                <li onClick={accountSection}>Account</li>
+
+                <li onClick={depositModal}>Deposit</li>
+                {showDepositModal === true ? (
+                  <Deposit displayState={setShowDepositModal} />
+                ) : (
+                  " "
+                )}
+                <li onClick={fundtransferSection}>FundTransfer</li>
+              </ul>
+            </div>
+            </div>  
+
       </div>
     </>
   );
