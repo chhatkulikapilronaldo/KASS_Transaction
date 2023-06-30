@@ -81,9 +81,10 @@ message DetailResponse{
 }
 message transferRequest{
     string token = 1;
-    string Receiver_Account = 2;
-    string Amount = 3;
-     string Remarks = 4;
+    string PIN = 2;
+    string Receiver_Account = 3;
+    string Amount = 4;
+    string Remarks = 5;
 }
 message transferResponse{
     int32 status = 1;
@@ -93,10 +94,9 @@ message updatePassRequest{
     string OldPassword = 1;
     string NewPassword = 2;
     string ConfirmPassword = 3;
-  
 }
 message updatePassResponse{
     int32 status = 1;
-    string message = 2; 
+    string message = 2;
 }
 

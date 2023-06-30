@@ -166,7 +166,7 @@ exports.transferMoney = async (req, res) => {
   const secret_key = process.env.JWT_SECRET;
   const requestObject = {
     token: req.headers.authorization,
-
+    PIN: req.body.PIN,
     Receiver_Account: req.body.Receiver_Account,
     Amount: req.body.Amount,
     Remarks: req.body.Remarks,

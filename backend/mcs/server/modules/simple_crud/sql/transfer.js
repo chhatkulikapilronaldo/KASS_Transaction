@@ -12,6 +12,7 @@ const helpers = require("../../../helpers");
         status: httpStatus.BAD_REQUEST,
         message: "Transfer Failed",
       };
+      const pin = call.PIN;
       connection = await dbHelper.getConnection();
       const userdetail = await connection.query(
         `Select * from login_infos WHERE token='${call.token}'`
@@ -23,6 +24,8 @@ const helpers = require("../../../helpers");
       );
 
       const Sender_Account = userdetail1[0][0].Account_Number;
+      const PinVerify = userdetail1[0][0].PIN;
+
       const insert = {
         Sender_Account: Sender_Account,
         Receiver_Account: call.Receiver_Account,
@@ -42,39 +45,42 @@ const helpers = require("../../../helpers");
         Remarks: call.Remarks,
         user_id: receive_user_id,
       };
+      if (pin == PinVerify) {
+        connection = await dbHelper.getConnection();
+        await connection.query(
+          `Update deposits set Amount = Amount - ? where Account_Number = ? LIMIT 1;`,
+          [insert.Amount, insert.Sender_Account],
+          (err, result) => {
+            if (err) {
+              connection.rollback(() => {
+                throw err;
+              });
+            }
+            // Check if sender's account has sufficient balance
+            if (result.affectedRows === 0) {
+              connection.rollback(() => {
+                throw new Error("Insufficient balance.");
+              });
+            }
+          }
+        );
 
-      connection = await dbHelper.getConnection();
-      const balanceUpdate = await connection.query(
-        `Update deposits set Amount = Amount - ? where Account_Number = ? LIMIT 1;`,
-        [insert.Amount, insert.Sender_Account],
-        (err, result) => {
-          if (err) {
-            connection.rollback(() => {
-              throw err;
-            });
-          }
-          // Check if sender's account has sufficient balance
-          if (result.affectedRows === 0) {
-            connection.rollback(() => {
-              throw new Error("Insufficient balance.");
-            });
-          }
+        connection = await dbHelper.getConnection();
+        await connection.query(`Insert into deposits set ?`, value);
+
+        connection = await dbHelper.getConnection();
+        const [transferAmount] = await connection.query(
+          `insert into transfers set ?`,
+          insert
+        );
+        if (transferAmount.insertId > 0) {
+          response.status = true;
+          response.message = "Transfer Successfully";
         }
-      );
-
-      connection = await dbHelper.getConnection();
-      await connection.query(`Insert into deposits set ?`, value);
-
-      connection = await dbHelper.getConnection();
-      const [transferAmount] = await connection.query(
-        `insert into transfers set ?`,
-        insert
-      );
-      if (transferAmount.insertId > 0) {
-        response.status = true;
-        response.message = "Transfer Successfully";
+        return response;
+      } else {
+        return response;
       }
-      return response;
     } catch (error) {
       throw error;
     } finally {
