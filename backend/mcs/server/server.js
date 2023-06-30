@@ -4,6 +4,7 @@
  */
 const path = require('path');
 const dotenv = require('dotenv');
+
 dotenv.config({
   path: path.resolve(__dirname,"./.env"),
 });
@@ -31,7 +32,11 @@ server.addService(simpleProto.funds_transfer.rpc.SimpleCrudService.service, {
   create: simpleServiceCtl.create,
   login: simpleServiceCtl.login,
   details: simpleServiceCtl.details,
-  updatePassword: simpleServiceCtl.updatePassword
+  updatePassword: simpleServiceCtl.updatePassword,
+  deposit: simpleServiceCtl.deposit,
+  updatePIN: simpleServiceCtl.updatePIN,
+  getInfo: simpleServiceCtl.getInfo,
+  transfer: simpleServiceCtl.transfer
  
 });
 console.log(process.env.GRPC_HOST,'---',process.env.GRPC_PORT)

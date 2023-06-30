@@ -2,9 +2,10 @@
 
 const authenticate = async(OldPassword, storedPassword) =>{
     try {
-      if(OldPassword == storedPassword ){
-        return true;
-      }
+    
+        if(OldPassword==storedPassword){
+          return true;
+        }
      else {
     console.log('Authentication failed');
   }

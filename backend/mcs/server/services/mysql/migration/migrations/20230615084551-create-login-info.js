@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      uuid:{
+        allowNull:false,
+        type:Sequelize.STRING
+      },
       PhoneNumber: {
         allowNull: false,
         type: Sequelize.BIGINT

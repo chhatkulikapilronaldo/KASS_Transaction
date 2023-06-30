@@ -5,6 +5,10 @@
     create: require('./create'),
     login: require('./login'),
     details: require("./details"),
-    updatePassword: require("./updatePassword")
+    updatePassword: require("./updatePassword"),
+    deposit: require("./deposit"),
+    updatePIN: require("./updatePIN"),
+    getInfo: require("./getInfo"),
+    transfer: require("./transfer")
   };
 })();
