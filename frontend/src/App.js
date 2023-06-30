@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.scss";
-import { Register, Login, Dashboard, TransferFund, PaymentDetail } from "./pages";
+import { Register, Login, Dashboard, TransferFund, PaymentDetail, SplashScreen } from "./pages";
 import { AccountTab, NavBar } from "./layouts";
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
            <Route path="paymentdetail" element={<PaymentDetail />} />
           </Route>
         </Route>
+      <Route path="splashScreen" element={<SplashScreen/>}/>
       </Routes>
     </div>
   );

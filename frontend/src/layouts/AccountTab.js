@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { faEyeSlash, faFolderClosed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-
   AreaChart,
   Area,
   XAxis,
@@ -21,38 +20,56 @@ export const AccountTab = () => {
   const toggleAmount = () => {
     setShowAmount(!showAmount);
   };
-const month= [
-  "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"
-]
-  const data = [
+  const month = [
     {
-      month: {month}
+      name: "Jan",
     },
     {
-      name: "Page A",
-      uv: 3000,
-      pv: 2400,
-      amt: 2400,
+      name: "Feb",
     },
     {
-      name: "Page B",
-      uv: 3500,
-      pv: 1398,
-      amt: 2210,
+      name: "Mar",
     },
     {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
+      name: "Apr",
     },
     {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    }
+      name: "May",
+    },
+    {
+      name: "Jun",
+    },
+    {
+      name: "Jul",
+    },
+    {
+      name: "Aug",
+    },
   ];
+  // const data = [
+  //   {
+  //     month: {month}
+  //   },
+  //   {
+  //     name: "Jan",
+  //     amt: 2400,
+  //   },
+  //   {
+  //     name: "Feb",
+
+  //     amt: 2210,
+  //   },
+  //   {
+  //     name: "Mar",
+
+  //     amt: 2290,
+  //   },
+  //   {
+  //     name: "April",
+
+  //     amt: 2000,
+  //   },
+  // ];
 
   return (
     <div className="account__wrapper">
@@ -103,13 +120,18 @@ const month= [
           <Button name="Last 30 days" />
         </div> */}
         {/* <ResponsiveContainer> */}
-        <AreaChart width={500} height={400} data={data}>
+        <AreaChart width={500} height={400} data={month}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name"/>
-          <YAxis  />
+          <XAxis dataKey="name" />
+          <YAxis dataKey={individualAccountInformation?.Total_Amount} />
           <Tooltip />
           {/* <Legend /> */}
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="grey" />
+          <Area
+            type="monotone"
+            dataKey={individualAccountInformation?.Total_Amount}
+            stroke="#8884d8"
+            fill="grey"
+          />
         </AreaChart>
         {/* </ResponsiveContainer> */}
       </div>
