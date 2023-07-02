@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
@@ -11,14 +11,28 @@ import {
 import fundTransfer from "../assets/images/fundtransfer.png";
 import { InputField, Button } from "../components";
 import { useNavigate } from "react-router-dom";
+import { UserDataContext } from "../hooks/UserDataContext";
+import useFormHandling from "../hooks/useFormHandling";
 export const TransferFund = () => {
-
+  const { value1, value2 } = useContext(UserDataContext);
+  const userAccountDetails = value1;
+  const transferDetail = value2;
   const navigate = useNavigate();
+  const Details = {
+    Account_Holder: "Anu Shrestha",
+    Account_Number: "4449202108331816",
+    Total_Amount: "1229000",
+  };
+
   const [hideAmount, setHideAmount] = useState(false);
-  const handleSubmit = (e) =>{
+  const { formData, handleFormInput } = useFormHandling();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('paymentdetail')
-  }
+    transferDetail({ ...formData, ACNumber: `${Details.Account_Number}` });
+    navigate("/dashboard/paymentdetail");
+  };
+
   return (
     <>
       <div className="transferFund">
@@ -33,7 +47,11 @@ export const TransferFund = () => {
                 <p className="senderaccount">
                   <span className="senderAmount">
                     NPR.
-                    {hideAmount ? " XXXXXX" : " 10,000"}
+                    {hideAmount
+                      ? " XXXXXX"
+                      : `${Intl.NumberFormat("en-IN").format(
+                          userAccountDetails?.Total_Amount
+                        )}`}
                   </span>
                   <span className="hideamount">
                     {hideAmount ? (
@@ -53,9 +71,12 @@ export const TransferFund = () => {
                   </div>
                 </p>
                 <p className="accounttype">
-                  NEW SUPER CHATMATKARIK BACHAT KHATA
+                  NEW SUPER CHAMATKARIK BACHAT KHATA
                 </p>
-                <p className="accountNumber">A/C No. 15648575465245</p>
+                <p className="accountNumber">
+                  A/C No: {userAccountDetails?.Account_Number}
+                  {/* A/C No. {userAccountDetails?.Account_Number} */}
+                </p>
               </div>
               <div className="transfer-image">
                 <img src={fundTransfer} alt="Fund Transfer" />
@@ -74,21 +95,24 @@ export const TransferFund = () => {
                 />
                 <InputField
                   type="number"
-                  name="ReceiverA/C"
+                  name="Receiver_Account"
                   label="Receiver's A/C Number"
                   icon={faFolderOpen}
+                  handleInput={handleFormInput}
                 />
                 <InputField
                   type="number"
-                  name="ReceiveAmount"
+                  name="Amount"
                   label="Amount"
                   icon={faMoneyBill}
+                  handleInput={handleFormInput}
                 />
                 <InputField
                   type="text"
                   name="Remarks"
                   label="Remarks"
                   icon={faPenToSquare}
+                  handleInput={handleFormInput}
                 />
                 <Button
                   className="fund-transfer"

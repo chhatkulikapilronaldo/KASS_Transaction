@@ -20,8 +20,8 @@ export const Deposit = ({ displayState }) => {
   const deposit_URL = "http://10.7.1.183:9000/users/deposit_Fund";
   const kapil_Deposit_Url = "http://10.7.1.13:8080/users/depositAmount";
   const { getInformation, getUserInfo } = useGetData(kapil_Deposit_Url);
-  const accountNumber = useContext(UserDataContext);
-
+  const { value1 } = useContext(UserDataContext);
+  const accountNumber = value1;
   const handleModalClose = () => {
     displayState(false);
   };
@@ -62,7 +62,7 @@ export const Deposit = ({ displayState }) => {
                   name="Account_Number"
                   label="A/C Number"
                   icon={faFolderOpen}
-                  value={accountNumber.Account_Number}
+                  value={accountNumber?.Account_Number}
                   disability="true"
                   handleInput={handleFormInput}
                 />

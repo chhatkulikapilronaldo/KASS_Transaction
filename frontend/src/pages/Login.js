@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import signinImage from "../assets/images/signin.png";
 import { faPhone, faLock } from "@fortawesome/free-solid-svg-icons";
 import useFormHandling from "../hooks/useFormHandling";
-
+import { SplashScreen } from "../layouts/SplashScreen";
 import useLogin from "../hooks/useLogin";
 const numbers = /^(97)([0-9]{8})$/g;
 const numberOnly = /^(98)([0-9]{8})$/g;
@@ -59,72 +59,72 @@ export const Login = () => {
       console.log("hello");
     } else {
       localStorage.setItem("userToken", postInformation.token);
-      setTimeout(()=>{
-        navigate('/splashScreen')
-      },7000);
       navigate("/dashboard/accountTab");
     }
   }, [postInformation]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     postUserInfo();
   };
   return (
-    <div className="login">
-      <div className="login__wrapper">
-        <div className="login-image">
-          <img src={signinImage} alt="Sign In" />
-        </div>
-        <div className="login-form">
-          <h3>Login to your Account</h3>
-          <form onSubmit={handleSubmit}>
-            <InputField
-              icon={faPhone}
-              type="text"
-              name="PhoneNumber"
-              label="Phone Number"
-              handleInput={handleFormInput}
-            />
-            {validNum ? (
-              " "
-            ) : (
-              <span className="login-form-invalidnumber">
-                *must start with 97 or 98 and 10 digits
-              </span>
-            )}
-            <InputField
-              icon={faLock}
-              type="password"
-              name="Password"
-              label="Password"
-              handleInput={handleFormInput}
-            />
-            {validPass ? (
-              " "
-            ) : (
-              <span className="login-form-invalidnumber">
-                *must be at least 8 characters
-              </span>
-            )}
-            {validLogin ? (
-              <Button type="submit" name="Login" disability="false" />
-            ) : (
-              <Button
-                type="submit"
-                name="Login"
-                className="validLogin"
-                disability="true"
+    <>
+      <div className="login">
+        <div className="login__wrapper">
+          <div className="login-image">
+            <img src={signinImage} alt="Sign In" />
+          </div>
+          <div className="login-form">
+            <h3>Login to your Account</h3>
+            <form onSubmit={handleSubmit}>
+              <InputField
+                icon={faPhone}
+                type="text"
+                name="PhoneNumber"
+                label="Phone Number"
+                handleInput={handleFormInput}
               />
-            )}
-          </form>
-          <p>
-            Have Account ?
-            <Link to="/register">
-              <span> Register Here</span>{" "}
-            </Link>
-          </p>
+              {validNum ? (
+                " "
+              ) : (
+                <span className="login-form-invalidnumber">
+                  *must start with 97 or 98 and 10 digits
+                </span>
+              )}
+              <InputField
+                icon={faLock}
+                type="password"
+                name="Password"
+                label="Password"
+                handleInput={handleFormInput}
+              />
+              {validPass ? (
+                " "
+              ) : (
+                <span className="login-form-invalidnumber">
+                  *must be at least 8 characters
+                </span>
+              )}
+              {validLogin ? (
+                <Button type="submit" name="Login" disability="false" />
+              ) : (
+                <Button
+                  type="submit"
+                  name="Login"
+                  className="validLogin"
+                  disability="true"
+                />
+              )}
+            </form>
+            <p>
+              Have Account ?
+              <Link to="/register">
+                <span> Register Here</span>{" "}
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

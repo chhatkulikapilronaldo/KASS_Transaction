@@ -12,11 +12,12 @@ import {
 } from "recharts";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { UserDataContext } from "../hooks/UserDataContext";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const AccountTab = () => {
-  const individualAccountInformation = useContext(UserDataContext);
+  const { value1 } = useContext(UserDataContext);
   const [showAmount, setShowAmount] = useState(false);
-
+  const individualAccountInformation = value1;
   const toggleAmount = () => {
     setShowAmount(!showAmount);
   };
@@ -46,6 +47,7 @@ export const AccountTab = () => {
       name: "Aug",
     },
   ];
+  console.log(individualAccountInformation);
   // const data = [
   //   {
   //     month: {month}
@@ -94,7 +96,7 @@ export const AccountTab = () => {
           {showAmount ? (
             <>
               <span>
-                {individualAccountInformation?.Total_Amount} &nbsp; &nbsp;
+                Rs. {individualAccountInformation?.Total_Amount} &nbsp; &nbsp;
                 <i>
                   <FontAwesomeIcon icon={faEye} onClick={toggleAmount} />
                 </i>
@@ -135,6 +137,7 @@ export const AccountTab = () => {
         </AreaChart>
         {/* </ResponsiveContainer> */}
       </div>
+      <ToastContainer />
     </div>
   );
 };

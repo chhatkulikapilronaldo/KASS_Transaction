@@ -5,10 +5,11 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import password from "../assets/images/register.png";
 import useGetData from "../hooks/useGetData";
 import { UserDataContext } from "../hooks/UserDataContext";
-import {  Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 const dashboarddisplay_URL = "http://10.7.1.183:9000/users/getInfo";
 export const Dashboard = () => {
   const navigate = useNavigate();
+  const [transferDetails, setTransferDetails] = useState();
   const [modalPasswordState, setModalPasswordState] = useState(true);
   const [modalPinState, setModalPinState] = useState(true);
   const { getInformation, getUserInfo } = useGetData(dashboarddisplay_URL);
@@ -18,7 +19,7 @@ export const Dashboard = () => {
   //   navigate("accountTab");
   // };
   // const fundtransferSection = () => {
-  //   navigate("/transferfund"); 
+  //   navigate("/transferfund");
   // };
   // const depositModal = () => {
   //   setShowDepositModal(true);
@@ -28,10 +29,17 @@ export const Dashboard = () => {
     getInformation?.Total_Amount ? console.log("hello") : getUserInfo();
   }, []);
   console.log(getInformation);
+  console.log(transferDetails);
   return (
     <div className="dashboard__wrapper">
       {/* ........NavBar/ Modal part......... */}
-      <UserDataContext.Provider value={getInformation}>
+      <UserDataContext.Provider
+        value={{
+          value1: getInformation,
+          value2: setTransferDetails,
+          value3: transferDetails,
+        }}
+      >
         <div className="dashboard-navelem">
           <NavBar
             displayModalState={setModalPasswordState}
@@ -87,8 +95,9 @@ export const Dashboard = () => {
           </div>
           {/* <AccountTab /> */}
         </div>
+
+        <Outlet />
       </UserDataContext.Provider>
-      <Outlet />
     </div>
   );
 };
