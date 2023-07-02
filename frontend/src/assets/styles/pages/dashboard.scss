@@ -31,14 +31,11 @@
           color: rgb(15, 66, 138);
           padding: 5px 16px;
           transition: 300ms ease;
-          &:hover {
+          &:hover,:active {
             background-color: rgb(15, 66, 138);
             color: #ffffff;
           }
-          &.focus {
-            background-color: rgb(15, 66, 138);
-            color: #ffffff;
-          }
+          
         }
       }
     }

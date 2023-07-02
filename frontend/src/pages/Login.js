@@ -59,6 +59,9 @@ export const Login = () => {
       console.log("hello");
     } else {
       localStorage.setItem("userToken", postInformation.token);
+      setTimeout(()=>{
+        navigate('/splashScreen')
+      },7000);
       navigate("/dashboard/accountTab");
     }
   }, [postInformation]);
