@@ -11,7 +11,8 @@
     router.post('/deposit_Fund',controller.depositAmount);
     router.put("/updatePIN",controller.updateUserPIN);
     router.get("/getInfo",controller.getInfoUser);
-    router.post("/fundTransfer",controller.transferMoney)
+    router.post("/fundTransfer",controller.transferMoney);
+    router.get("/details",controller.detailOfUser);
   
     module.exports = router;
 })()

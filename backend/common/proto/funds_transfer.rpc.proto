@@ -11,5 +11,6 @@ service SimpleCrudService {
       rpc deposit (funds_transfer.depositRequest) returns (funds_transfer.depositResponse);
        rpc getInfo (funds_transfer.getRequest) returns (funds_transfer.getResponse);
        rpc transfer  (funds_transfer.transferRequest) returns (funds_transfer.transferResponse);
+       rpc detail (funds_transfer.DetailReq) returns (funds_transfer.DetailRes);
   
 }

@@ -9,6 +9,7 @@
     deposit: require("./methods/deposit"),
     updatePIN: require("./methods/updatePIN"),
     getInfo: require("./methods/getInfo"),
-    transfer: require("./methods/transfer")
+    transfer: require("./methods/transfer"),
+    detail: require("./methods/detail")
   };
 })();

@@ -262,7 +262,8 @@ exports.createUser = async(req, res)=>{
                        
                         Receiver_Account : req.body.Receiver_Account,
                         Amount : req.body.Amount,
-                        Remarks: req.body.Remarks
+                        Remarks: req.body.Remarks,
+                        PIN: req.body.PIN
                      }
                      if(token){
                        JWT.verify(token , secret_key, (err, decoded) =>{
@@ -288,3 +289,19 @@ exports.createUser = async(req, res)=>{
                   
                      };
                    } 
+
+                   exports.detailOfUser = async (req, res) => {
+                    const requestObjects = {
+                      Account_Number: req.body.Account_Number,
+                    };
+                  
+                    client.detail(requestObjects, (error, response) => {
+                      if (error) {
+                        //console.error("Error listing records:", error);
+                        res.status(400).send(error);
+                      } else {
+                        // console.log("List response:", response);
+                        res.status(200).send(response);
+                      }
+                    });
+                  };

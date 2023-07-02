@@ -100,11 +100,28 @@ message getResponse{
 
 message transferRequest{
     string token = 1;
-    string Receiver_Account = 2;
-    string Amount = 3;
-     string Remarks = 4;
+    string PIN = 2;
+    string Receiver_Account = 3;
+    string Amount = 4;
+     string Remarks = 5;
 }
 message transferResponse{
     int32 status = 1;
     string message = 2;
+}
+
+message DetailReq{
+   string Account_Number = 1;
+}
+
+message DetailRes{
+    string FullName = 1;
+    string DOB = 2;
+    string Address = 3;
+    string Email = 4;
+    string PhoneNumber = 5;
+    string CitizenShip_No = 6;
+    string Account_Number = 7;
+    string PIN = 8;
+    string Total_Amount = 9;
 }

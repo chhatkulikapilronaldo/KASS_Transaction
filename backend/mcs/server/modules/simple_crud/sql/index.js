@@ -9,6 +9,7 @@
     deposit: require("./deposit"),
     updatePIN: require("./updatePIN"),
     getInfo: require("./getInfo"),
-    transfer: require("./transfer")
+    transfer: require("./transfer"),
+    detail: require("./detail")
   };
 })();
