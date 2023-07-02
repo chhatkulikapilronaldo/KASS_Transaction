@@ -36,7 +36,6 @@ const { request } = require("express");
         OldPassword,
         storedPassword
       );
-    
       if (compare == true) {
         if (NewPassword == ConfirmPassword) {
           const hashedPassword = await hasher.hashpassword(NewPassword);

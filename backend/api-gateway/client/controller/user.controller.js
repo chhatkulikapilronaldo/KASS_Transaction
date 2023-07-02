@@ -122,9 +122,10 @@ exports.getInfoUser = async (req, res) => {
   const JWT = require("jsonwebtoken");
   const token = req.headers.authorization;
   const secret_key = process.env.JWT_SECRET;
-  // const requestObject = {
-  //     token:req.headers.authorization
-  // }
+  const requestObject = {
+    token: req.headers.authorization,
+  };
+  //console.log(token);
   if (token) {
     JWT.verify(token, secret_key, (err, decoded) => {
       if (err) {
@@ -132,7 +133,7 @@ exports.getInfoUser = async (req, res) => {
         res.status(404).send("Unverified User");
       } else {
         console.log("Token verified succesfully", decoded);
-        client.getInfo({}, (error, response) => {
+        client.getInfo(requestObject, (error, response) => {
           if (error) {
             //console.error("Error listing records:", error);
             res.status(400).send(error);

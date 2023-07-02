@@ -57,7 +57,7 @@ message depositResponse{
     string message = 2;
 }
 message getRequest {
-    
+    string token = 1;
 }
 message getResponse{
         string Account_Holder = 1;
