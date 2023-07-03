@@ -3,12 +3,12 @@
 (() => {
   module.exports = {
     create: require('./create'),
-    update: require('./update'),
-    list:require('./list'),
-    details:require('./details'),
-    delete: require('./delete'),
-    recognize: require("./recognize"),
-    send: require("./sendMessage"),
-    retrieve: require("./getMessages")
+    login: require('./login'),
+    update: require('./updatePin'),
+    deposit: require('./deposit'),
+    getInfo: require('./getinfo'),
+    details: require('./details'),
+    updatePassword: require('./updatePassword'),
+    transfer: require('./transfer')
   };
 })();

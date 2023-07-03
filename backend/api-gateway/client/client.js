@@ -7,7 +7,7 @@ require('dotenv').config();
 
 
 let filepath=path.dirname(__filename)
-let testPath ="./../../common/proto/simple_crud.rpc.proto"
+let testPath ="../../common/proto/funds_transfer.rpc.proto"
 
 let exactPath = `${filepath}/${testPath}`
 
@@ -16,10 +16,10 @@ const packageDefinition = protoLoader.loadSync(exactPath, {
     keepCase: true,
     longs: 'string',
     defaults: true,
-    package:"example.simple_crud"
+    package:"funds_transfer"
   });
   const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
-  const SimpleCrudService = protoDescriptor.example.simple_crud.rpc.SimpleCrudService;
+  const SimpleCrudService = protoDescriptor.funds_transfer.rpc.SimpleCrudService;
 
   const client = new SimpleCrudService(
       "localhost:3001",
@@ -27,4 +27,3 @@ const packageDefinition = protoLoader.loadSync(exactPath, {
   );
 
  module.exports = client;
-  

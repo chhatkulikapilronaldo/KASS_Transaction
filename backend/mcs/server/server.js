@@ -14,7 +14,7 @@ const { dbHelper } = require('./helpers');
 // ../../common/proto
 // ./../../
 let filepath=path.dirname(__filename)
-let testPath ="../../common/proto/simple_crud.rpc.proto"
+let testPath ="../../common/proto/funds_transfer.rpc.proto"
 
 let exactPath = `${filepath}/${testPath}`
 const packageDefinition = protoLoader.loadSync(exactPath, {
@@ -27,15 +27,16 @@ const simpleProto = grpc.loadPackageDefinition(packageDefinition);
 // Grpc Methods
 const simpleServiceCtl = require('./modules/simple_crud');
 
-server.addService(simpleProto.example.simple_crud.rpc.SimpleCrudService.service, {
+server.addService(simpleProto.funds_transfer.rpc.SimpleCrudService.service, {
   create: simpleServiceCtl.create,
+  login: simpleServiceCtl.login,
   update: simpleServiceCtl.update,
-  details:simpleServiceCtl.details,
-  list: simpleServiceCtl.list,
-  delete: simpleServiceCtl.delete,
-  recognize: simpleServiceCtl.recognize,
-  SendMessage:simpleServiceCtl.SendMessage,
-  GetMessage:simpleServiceCtl.GetMessage
+  deposit: simpleServiceCtl.deposit,
+  getInfo:simpleServiceCtl.getInfo,
+  details: simpleServiceCtl.details,
+  updatePassword: simpleServiceCtl.updatePassword,
+  transfer: simpleServiceCtl.transfer
+ 
 });
 console.log(process.env.GRPC_HOST,'---',process.env.GRPC_PORT)
 server.bindAsync(`${process.env.GRPC_HOST}:${process.env.GRPC_PORT}`, grpc.ServerCredentials.createInsecure(),()=>{

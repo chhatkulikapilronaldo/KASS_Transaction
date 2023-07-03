@@ -1,169 +1,234 @@
-let client = require('../client');
-const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-const app = express();
+let client = require("../client");
+const helper = require("../../../mcs/server/helpers/index");
 
-// Configure body-parser middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+exports.createUser = async (req, res) => {
+  const requestObject = {
+    FullName: req.body.FullName,
+    DOB: req.body.DOB,
+    Address: req.body.Address,
+    Email: req.body.Email,
+    PhoneNumber: req.body.PhoneNumber,
+    CitizenShip_No: req.body.CitizenShip_No,
+    Password: req.body.Password,
+    Confirm_Password: req.body.Confirm_Password,
+  };
 
- exports.getUser = (req, res, next)=>{
-    client.list({}, (error, response) => {
-        if (error) {
-          //console.error("Error listing records:", error);
-          res.status(400).send(error);
-        } else {
-         // console.log("List response:", response);
-         res.status(200).send(response);
-        }
-      });
-}
+  const output = await helper.validationHelper.uservalidation(requestObject);
+  if (output == true) {
+    client.create(requestObject, (error, response) => {
+      if (error) {
+        //console.error("Error listing records:", error);
+        res.status(400).send(error);
+      } else {
+        // console.log("List response:", response);
+        res.status(200).send(response);
+      }
+    });
+  } else {
+    res.status(400).send({
+      success: false,
+      // status: 400, //bad request
+      message: "Please provide appropriate data",
+    });
+  }
+};
+exports.loginUser = async (req, res) => {
+  const requestObject = {
+    PhoneNumber: req.body.PhoneNumber,
+    Password: req.body.Password,
+  };
 
-exports.createUser = (req, res)=>{
-//   const request = {
-//     firstName: req.query,
-//     lastName: req.query,
-//     email: req.query,
-//     age: req.query,
-//     location: req.query
-// };
-//const {firstName, lastName, email, age ,location}= req.body;
- const firstName = req.body;
- const lastName = req.body;
- const email = req.body;
- const age = req.body;
- const location = req.body;
- //const date = req.body;
-// const user = {
-//   firstName: req.body.firstName,
-//   lastName: "Singh",
-//   email: "ankii@gmail.com",
-//   age: "29",
-//   location: "Chakrapath"
-// };
-// const request = {
-//   body: {
-//     firstName: req.body,
-//     lastName: req.body,
-//     email: req.body,
-//   age: req.body,
-//   location: req.body
-//   },
-// };
-  //const request = { first_name: req.body.firstName, lastName: req.lastName, email:req.email, age:req.age ,location:req.location };
-  
-  client.create((firstName, lastName, email, age ,location), (error, response) => {
+  client.login(requestObject, (error, response) => {
     if (error) {
       //console.error("Error listing records:", error);
       res.status(400).send(error);
     } else {
-     // console.log("List response:", response);
-     res.status(200).send(response);
+      // console.log("List response:", response);
+      res.status(200).send(response);
     }
   });
-}
-
-exports.deleteUser = (req, res, next)=>{
-  const id = req.params;
-    client.delete(id, (error, response) => {
-      if (error) {
-        //console.error("Error listing records:", error);
-        res.status(400).send(error);
+};
+exports.updateUserPIN = async (req, res) => {
+  const JWT = require("jsonwebtoken");
+  const token = req.headers.authorization;
+  const secret_key = process.env.JWT_SECRET;
+  const requestObject = {
+    token: req.headers.authorization,
+    OldPIN_Number: req.body.OldPIN_Number,
+    NewPIN_Number: req.body.NewPIN_Number,
+    ConfirmPIN_Number: req.body.ConfirmPIN_Number,
+  };
+  if (
+    requestObject.OldPIN_Number &&
+    requestObject.NewPIN_Number &&
+    requestObject.ConfirmPIN_Number
+  ) {
+    JWT.verify(token, secret_key, (err, decoded) => {
+      if (err) {
+        console.error("Unverified Token", err.message);
+        res.status(404).send("Unverified User");
       } else {
-       // console.log("List response:", response);
-       res.status(200).send(response);
+        console.log("Token verified succesfully", decoded);
+        client.update(requestObject, (error, response) => {
+          if (error) {
+            //console.error("Error listing records:", error);
+            res.status(400).send(error);
+          } else {
+            // console.log("List response:", response);
+            res.status(200).send(response);
+          }
+        });
+      }
+    });
+  } else {
+    console.log("Invalid user details");
+  }
+};
+exports.depositAmount = async (req, res) => {
+  const JWT = require("jsonwebtoken");
+  const token = req.headers.authorization;
+  const secretKey = process.env.JWT_SECRET;
+
+  const requestObject = {
+    token: req.headers.authorization,
+    Amount: req.body.Amount,
+    Remarks: req.body.Remarks,
+  };
+  if (requestObject.Amount && requestObject.Remarks) {
+    JWT.verify(token, secretKey, (err, decoded) => {
+      if (err) {
+        console.error("Token verification failed:", err.message);
+        res.status(404).send("Please provide token correct, unverified User");
+      } else {
+        // Token verification successful
+        console.log("Token verified successfully:", decoded);
+        client.deposit(requestObject, (error, response) => {
+          if (error) {
+            //console.error("Error listing records:", error);
+            res.status(400).send(error);
+            //res.status(400).send("Invalid User details");
+          } else {
+            // console.log("List response:", response);
+            res.status(200).send(response);
+          }
+        });
+      }
+    });
+  } else {
+    res.status(400).send("Invalid details");
+  }
+};
+exports.getInfoUser = async (req, res) => {
+  const JWT = require("jsonwebtoken");
+  const token = req.headers.authorization;
+  const secret_key = process.env.JWT_SECRET;
+  const requestObject = {
+    token: req.headers.authorization,
+  };
+  //console.log(token);
+  if (token) {
+    JWT.verify(token, secret_key, (err, decoded) => {
+      if (err) {
+        console.error("Unverified Token", err.message);
+        res.status(404).send("Unverified User");
+      } else {
+        console.log("Token verified succesfully", decoded);
+        client.getInfo(requestObject, (error, response) => {
+          if (error) {
+            //console.error("Error listing records:", error);
+            res.status(400).send(error);
+          } else {
+            // console.log("List response:", response);
+            res.status(200).send(response);
+          }
+        });
       }
     });
   }
-  
-  exports.updateUser = (req, res, next)=>{
-    const id = req.body;
-    const firstName = req.body;
-    const lastName = req.body;
-    const email = req.body;
-    const age = req.body;
-    const location = req.body;
-    client.update((id,firstName, lastName, email, age ,location), (error, response) => {
-      if (error) {
-        //console.error("Error listing records:", error);
-        res.status(400).send(error);
+};
+exports.detailUser = async (req, res) => {
+  const requestObjects = {
+    Account_Number: req.body.Account_Number,
+  };
+
+  client.details(requestObjects, (error, response) => {
+    if (error) {
+      //console.error("Error listing records:", error);
+      res.status(400).send(error);
+    } else {
+      // console.log("List response:", response);
+      res.status(200).send(response);
+    }
+  });
+};
+exports.transferMoney = async (req, res) => {
+  const JWT = require("jsonwebtoken");
+  const token = req.headers.authorization;
+  const secret_key = process.env.JWT_SECRET;
+  const requestObject = {
+    token: req.headers.authorization,
+    PIN: req.body.PIN,
+    Receiver_Account: req.body.Receiver_Account,
+    Amount: req.body.Amount,
+    Remarks: req.body.Remarks,
+  };
+  if (token) {
+    JWT.verify(token, secret_key, (err, decoded) => {
+      if (err) {
+        console.error("Unverified Token", err.message);
+        res.status(404).send("Unverified User");
       } else {
-       // console.log("List response:", response);
-       res.status(200).send(response);
+        console.log("Token verified succesfully", decoded);
+        client.transfer(requestObject, (error, response) => {
+          if (error) {
+            //console.error("Error listing records:", error);
+            res.status(400).send(error);
+          } else {
+            // console.log("List response:", response);
+            res.status(200).send(response);
+          }
+        });
       }
     });
   }
-    
-  exports.detailUser = (req, res, next)=>{
-    const id = req.params;
-    client.details(id, (error, response) => {
-      if (error) {
-        //console.error("Error listing records:", error);
-        res.status(400).send(error);
+};
+exports.updateUserPassword = async (req, res) => {
+  const JWT = require("jsonwebtoken");
+  const token = req.headers.authorization;
+  const secretKey = process.env.JWT_SECRET;
+  const requestObject = {
+    OldPassword: req.body.OldPassword,
+    NewPassword: req.body.NewPassword,
+    ConfirmPassword: req.body.ConfirmPassword,
+  };
+
+  if (
+    requestObject.OldPassword ||
+    requestObject.NewPassword ||
+    requestObject.ConfirmPassword
+  ) {
+    JWT.verify(token, secretKey, (err, decoded) => {
+      if (err) {
+        console.error("Token verification failed:", err.message);
+        res.status(404).send({
+          Message: "Unverified User, please provide token",
+        });
       } else {
-       // console.log("List response:", response);
-       res.status(200).send(response);
+        // Token verification successful
+        console.log("Token verified successfully:", decoded);
+        client.updatePassword(requestObject, (error, response) => {
+          if (error) {
+            //console.error("Error listing records:", error);
+            //res.status(400).send("Invalid User details");
+            res.status(400).send(error);
+          } else {
+            // console.log("List response:", response);
+            res.status(200).send(response);
+          }
+        });
       }
     });
+  } else {
+    res.status(400).send("Invalid details");
   }
-  
-  exports.recognizeUser = (req, res, next)=>{
-    const imageRequest = fs.readFileSync('../image.png');
-
-    
-    client.details(imageRequest, (error, response) => {
-      if (error) {
-        //console.error("Error listing records:", error);
-        res.status(400).send(error);
-      } else {
-       // console.log("List response:", response);
-       res.status(200).send(response);
-      }
-    });
-  }
-
-  exports.sendMessage = (req, res, next)=>{
-  
-    // const { sender_id, receiver_id, message } = req.query;
-  
-    const sender_id = req.body;
-    const receiver_id = req.body;
-    const message = req.body;
-    // const request = {
-    //   sender_id,
-    //   receiver_id,
-    //   message,
-    // };
-    
-    client.SendMessage((sender_id,receiver_id,message) , (error, response) => {
-      if (error) {
-        //console.error("Error listing records:", error);
-        res.status(400).send(error);
-      } else {
-       // console.log("List response:", response);
-       res.status(200).send(response);
-      }
-    });
-  }
-  exports.getMessage = (req, res, next)=>{
-  const userID = req.params;
-    
-    client.GetMessage(userID , (error, response) => {
-      if (error) {
-        //console.error("Error listing records:", error);
-        res.status(400).send(error);
-      } else {
-       // console.log("List response:", response);
-       res.status(200).send(response);
-      }
-    });
-  }
-
-
-
-
-
-exports.testUser =  (req, res, next)=>{
-    res.send("This route is working...")
-}
+};

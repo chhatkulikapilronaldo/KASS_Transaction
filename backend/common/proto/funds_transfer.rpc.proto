@@ -1,0 +1,14 @@
+syntax = "proto3";
+package funds_transfer.rpc;
+import "funds.proto";
+
+service SimpleCrudService {
+    rpc create (funds_transfer.CreateRequest) returns (funds_transfer.CreateResponse);
+    rpc login (funds_transfer.LoginRequest) returns (funds_transfer.LoginResponse);
+    rpc update (funds_transfer.UpdateRequest) returns (funds_transfer.UpdateResponse);
+    rpc deposit (funds_transfer.depositRequest) returns (funds_transfer.depositResponse);
+    rpc getInfo (funds_transfer.getRequest) returns (funds_transfer.getResponse);
+    rpc details (funds_transfer.DetailRequest) returns (funds_transfer.DetailResponse);
+    rpc transfer  (funds_transfer.transferRequest) returns (funds_transfer.transferResponse);
+    rpc updatePassword (funds_transfer.updatePassRequest) returns (funds_transfer.updatePassResponse);
+}
