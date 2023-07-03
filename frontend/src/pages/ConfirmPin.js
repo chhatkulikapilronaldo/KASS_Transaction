@@ -22,17 +22,21 @@ export const ConfirmPIN = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     delete transferRequest.ACNumber;
-    // postUserInfo();
-    toast.success("Fund has been transfered", {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 3000,
-    });
-    // navigate("/dashboard/accounttab");
+    postUserInfo();
+    if (postInformation?.status === 200) {
+      alert(postInformation?.message);
+      navigate("/dashboard/accounttab");
+    } else {
+      toast.success("Fund transfer failed", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
+    }
   };
   useEffect(() => {
-    if (formData?.PIN.length === 0) {
+    if (formData?.PIN?.length === 0) {
       setValidPIN(true);
-    } else if (formData?.PIN.length != 4) {
+    } else if (formData?.PIN?.length != 4) {
       setValidPIN(false);
     } else {
       setValidPIN(true);

@@ -13,18 +13,6 @@ export const Dashboard = () => {
   const [modalPasswordState, setModalPasswordState] = useState(true);
   const [modalPinState, setModalPinState] = useState(true);
   const { getInformation, getUserInfo } = useGetData(dashboarddisplay_URL);
-
-  // const [showDepositModal, setShowDepositModal] = useState(false);
-  // const accountSection = () => {
-  //   navigate("accountTab");
-  // };
-  // const fundtransferSection = () => {
-  //   navigate("/transferfund");
-  // };
-  // const depositModal = () => {
-  //   setShowDepositModal(true);
-  // };
-
   useEffect(() => {
     getInformation?.Total_Amount ? console.log("hello") : getUserInfo();
   }, []);

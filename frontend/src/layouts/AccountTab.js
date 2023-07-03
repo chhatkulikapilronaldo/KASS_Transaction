@@ -24,9 +24,11 @@ export const AccountTab = () => {
   const month = [
     {
       name: "Jan",
+      value: `${individualAccountInformation?.Total_Amount}`,
     },
     {
       name: "Feb",
+      value: `${individualAccountInformation?.Total_Amount}`,
     },
     {
       name: "Mar",
@@ -36,6 +38,7 @@ export const AccountTab = () => {
     },
     {
       name: "May",
+      value: `${individualAccountInformation?.Total_Amount}`,
     },
     {
       name: "Jun",
@@ -45,6 +48,7 @@ export const AccountTab = () => {
     },
     {
       name: "Aug",
+      value: `${individualAccountInformation?.Total_Amount}`,
     },
   ];
   console.log(individualAccountInformation);
@@ -96,7 +100,11 @@ export const AccountTab = () => {
           {showAmount ? (
             <>
               <span>
-                Rs. {individualAccountInformation?.Total_Amount} &nbsp; &nbsp;
+                Rs.{" "}
+                {Intl.NumberFormat("en-IN").format(
+                  individualAccountInformation?.Total_Amount
+                )}
+                &nbsp; &nbsp;
                 <i>
                   <FontAwesomeIcon icon={faEye} onClick={toggleAmount} />
                 </i>
@@ -125,15 +133,10 @@ export const AccountTab = () => {
         <AreaChart width={500} height={400} data={month}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis dataKey={individualAccountInformation?.Total_Amount} />
+          <YAxis dataKey="value" />
           <Tooltip />
           {/* <Legend /> */}
-          <Area
-            type="monotone"
-            dataKey={individualAccountInformation?.Total_Amount}
-            stroke="#8884d8"
-            fill="grey"
-          />
+          <Area type="monotone" dataKey="value" stroke="#8884d8" fill="grey" />
         </AreaChart>
         {/* </ResponsiveContainer> */}
       </div>
