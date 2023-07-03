@@ -3,14 +3,13 @@ import axios from "axios";
 
 const usePutData = (requestURL, putData) => {
   const [putInformation, setputInformation] = useState();
-
+  const token = localStorage.getItem("userToken");
   const updateUserInformation = async () => {
     try {
       await axios
         .put(requestURL, putData, {
           headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6Ijk4NjEzMzQ1NjcifSwiaWF0IjoxNjg3NjgzNDM0LCJleHAiOjE2ODg4OTMwMzR9.WLQSMdwYVyxB69SEqSNVcGBOtV2qbxh1KPbWXf51PcA",
+            Authorization: token,
           },
         })
         .then((response) => {

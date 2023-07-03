@@ -9,6 +9,7 @@ import usePostData from "../hooks/usePostData";
 import usePutData from "../hooks/usePutData";
 const kapil_PinUpdate_url = "http://10.7.1.13:8080/users/update";
 const ankit_PassUpdate_url = "http://10.7.1.183:9000/users/updatePassword";
+const ankit_PINUpdate_url = "http://10.7.1.183:9000/users/updatePIN";
 export const Modal = ({
   transType,
   oldData,
@@ -23,7 +24,7 @@ export const Modal = ({
   const handleModalClose = () => {
     displayState(true);
   };
-
+  const [requestUrl, setRequestUrl] = useState();
   const [validPass, setValidPass] = useState(false);
   const [validPin, setValidPin] = useState(false);
   const { formData, handleFormInput } = useFormHandling({
@@ -34,9 +35,13 @@ export const Modal = ({
     NewPIN_Number: "",
     ConfirmPIN_Number: "",
   });
-
+  useEffect(() => {
+    transType === "Change Password"
+      ? setRequestUrl(ankit_PassUpdate_url)
+      : setRequestUrl(ankit_PINUpdate_url);
+  }, [transType]);
   const { putInformation, updateUserInformation } = usePutData(
-    ankit_PassUpdate_url,
+    requestUrl,
     formData
   );
   useEffect(() => {
@@ -50,23 +55,23 @@ export const Modal = ({
   }, [transType]);
 
   useEffect(() => {
-    if (formData.OldPassword) {
+    if (formData?.OldPassword) {
       setValidPass(true);
-    } else if (formData.OldPassword.length === 0) {
+    } else if (formData?.OldPassword?.length === 0) {
       setValidPass(false);
     } else {
       setValidPass(false);
     }
-  }, [formData.OldPassword]);
+  }, [formData?.OldPassword]);
   useEffect(() => {
-    if (formData.OldPIN_Number) {
+    if (formData?.OldPIN_Number) {
       setValidPin(true);
-    } else if (formData.OldPIN_Number.length === 0) {
+    } else if (formData?.OldPIN_Number?.length === 0) {
       setValidPin(false);
     } else {
       setValidPin(false);
     }
-  }, [formData.OldPIN_Number]);
+  }, [formData?.OldPIN_Number]);
 
   // console.log(putInformation);
 
@@ -76,14 +81,20 @@ export const Modal = ({
       delete formData.ConfirmPIN_Number;
       delete formData.NewPIN_Number;
       delete formData.OldPIN_Number;
-    } else {
+    } else if (transType === "Change PIN") {
       delete formData.ConfirmPassword;
       delete formData.NewPassword;
       delete formData.OldPassword;
     }
     updateUserInformation();
+    console.log(formData);
   };
-
+  useEffect(() => {
+    if (putInformation?.status === 200) {
+      alert(putInformation?.message);
+      displayState(true);
+    }
+  }, [putInformation]);
   return (
     <div className="modal">
       <div className="modal__wrapper">
@@ -125,6 +136,7 @@ export const Modal = ({
               />
               <InputField
                 type={inType}
+                z
                 name={confirmData}
                 label={confirmData}
                 icon={icon}

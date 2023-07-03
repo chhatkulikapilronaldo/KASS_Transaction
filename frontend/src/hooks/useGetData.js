@@ -3,7 +3,6 @@ import axios from "axios";
 
 const useGetData = (requestURL) => {
   const token = localStorage.getItem("userToken");
-  console.log(token);
   const [getInformation, setGetInformation] = useState();
   const getUserInfo = async () => {
     try {

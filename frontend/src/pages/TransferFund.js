@@ -29,7 +29,10 @@ export const TransferFund = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    transferDetail({ ...formData, ACNumber: `${Details.Account_Number}` });
+    transferDetail({
+      ...formData,
+      ACNumber: `${userAccountDetails.Account_Number}`,
+    });
     navigate("/dashboard/paymentdetail");
   };
 

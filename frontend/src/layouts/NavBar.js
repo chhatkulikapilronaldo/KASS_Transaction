@@ -6,15 +6,15 @@ import { UserDataContext } from "../hooks/UserDataContext";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Deposit } from "../pages";
 export const NavBar = ({ displayModalState, displayPinModalState }) => {
-
-  var d= new Date();
+  const { value1, value2, value3 } = useContext(UserDataContext);
+  const userAccountDetails = value1;
+  var d = new Date();
   var time = d.getHours();
   const [modalPasswordState, setModalPasswordState] = useState(true);
   const [modalPinState, setModalPinState] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [showDepositModal, setShowDepositModal] = useState(false);
   const navigate = useNavigate();
-
 
   const individualUserData = useContext(UserDataContext);
   const handleClick = () => {
@@ -39,6 +39,10 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
   const accountSection = () => {
     navigate("accountTab");
   };
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <>
       <div className="navbar">
@@ -52,10 +56,10 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
           <div className="navbar-user">
             <div className="user-profile">
               <p>
-                {time<12?"Good Morning!!":"Good Afternoon!!"}
+                {time < 12 ? "Good Morning!!" : "Good Afternoon!!"}
                 <br />
-                <span>{individualUserData?.Account_Holder}</span>
-                 {/* <span>Suraj Pulami Magar</span> */}
+                <span>{userAccountDetails?.Account_Holder}</span>
+                {/* <span>Suraj Pulami Magar</span> */}
               </p>
               <div className="profileImage">
                 <img src={profile} alt="profileimage" onClick={handleClick} />
@@ -76,6 +80,7 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
                   >
                     Change Pin
                   </li>
+                  <li onClick={handleLogout}>Logout</li>
                 </ul>
                 {/* {modalPasswordState ? (
                   ""
@@ -113,21 +118,20 @@ export const NavBar = ({ displayModalState, displayPinModalState }) => {
           </div>
         </div>
         <div className="dashboard-body">
-        <div className="dashboard-links">
-              <ul>
-                <li onClick={accountSection}>Account</li>
+          <div className="dashboard-links">
+            <ul>
+              <li onClick={accountSection}>Account</li>
 
-                <li onClick={depositModal}>Deposit</li>
-                {showDepositModal === true ? (
-                  <Deposit displayState={setShowDepositModal} />
-                ) : (
-                  " "
-                )}
-                <li onClick={fundtransferSection}>FundTransfer</li>
-              </ul>
-            </div>
-            </div>  
-
+              <li onClick={depositModal}>Deposit</li>
+              {showDepositModal === true ? (
+                <Deposit displayState={setShowDepositModal} />
+              ) : (
+                " "
+              )}
+              <li onClick={fundtransferSection}>FundTransfer</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </>
   );
