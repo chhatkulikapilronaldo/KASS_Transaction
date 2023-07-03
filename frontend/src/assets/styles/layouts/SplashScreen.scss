@@ -1,0 +1,52 @@
+.splash__wrapper{
+    display: flex;
+    margin: 90px auto;
+    justify-content: center;
+    align-items: center;   
+    overflow: hidden;
+    // border: 1px solid black;
+    .splash-text{
+        // border: 1px solid black;
+        h1{
+            font-size: 60px;
+            font-weight: 400;
+        }
+    h2{
+        font-size: 60px;
+        font-weight: 500;
+        // color: #444;
+        span{
+            position: relative;
+            &:nth-child(1){
+                color:  rgb(15, 66, 138);
+            }
+            &:nth-child(2){
+                color: red;
+            }
+           
+            
+            &::after{
+                content: "";
+                position: absolute;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background: #ffffff;
+                border-left: 2px solid #444;
+                animation: typing 2s steps(17) infinite;
+            }
+        }
+    }
+}
+.splash-image{
+    display: flex;
+    justify-content: center;
+}
+}
+
+@keyframes typing{
+    100%{
+        left: 100%;
+        margin: 0 -35px 0 35px;
+    }
+}

@@ -1,0 +1,36 @@
+.account__wrapper {
+  margin: auto;
+  max-width: max-content;
+  border: 1px solid black;
+  display: flex;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px grey;
+  border-radius: 5px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 60px;
+  .account-text {
+    // border: 1px solid black;
+    padding: 16px;
+    // width: 50%;
+    .account-name {
+      display: flex;
+      gap: 16px;
+      i {
+        font-size: 24px;
+      }
+      h5 {
+        font-size: 24px;
+      }
+    }
+    p {
+      margin: 16px 6px;
+    }
+    h4 {
+      margin: 6px;
+      i{
+        cursor: pointer;
+      }
+    }
+  }
+}

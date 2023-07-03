@@ -1,0 +1,116 @@
+.login {
+    .login__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: max-content;
+      margin: 100px auto;
+      box-shadow: 0 0 10px rgb(231, 231, 231);
+      border-radius: 8px;
+      // transition: 300ms ease-in-out;
+    }
+    .login-image {
+      padding: 32px;
+      img {
+        height: 350px;
+        width: 450px;
+      }
+    }
+    .login-form {
+      padding: 32px;
+      margin-right: 10px;
+      h3 {
+        font-size: 24px;
+        font-weight: 500;
+        // position: relative;
+        // &::after{
+        //   content: " ";
+        //   position: absolute;
+        //   width: 58px;
+        //   height: 5px;
+        //   top: 32px;
+        //   left: -2px;
+        //   border-radius: 25px;
+        //   background-color: rgb(20, 3, 116);
+        // }
+      }
+      form {
+        input {
+          width: 100%;
+        }
+      }
+      .login-form-invalidnumber {
+        color: gray;
+        font-size: 14px;
+      }
+      .button {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      p {
+        a {
+          text-decoration: none;
+        }
+        span {
+          color: rgb(20, 3, 116);
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  
+  //responsive design
+  @media (max-width: 860px) {
+    .login {
+      .login__wrapper {
+        flex-direction: column;
+        flex-flow: column-reverse;
+        margin: 50px auto;
+        .login-image {
+          img {
+            height: 300px;
+            width: 400px;
+          }
+        }
+        .login-form {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login {
+      .login__wrapper {
+        flex-direction: column;
+        flex-flow: column-reverse;
+        margin: 40px auto;
+        transition: 300ms ease-in-out;
+        .login-image {
+          img {
+            height: 200px;
+            width: 300px;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 385px) {
+    .login {
+      .login__wrapper {
+        flex-direction: column;
+        flex-flow: column-reverse;
+        margin: 30px;
+        .login-image {
+          img {
+            height: 200px;
+            width: 200px;
+          }
+        }
+        .login-form {
+          padding: 24px;
+        }
+      }
+    }
+  }

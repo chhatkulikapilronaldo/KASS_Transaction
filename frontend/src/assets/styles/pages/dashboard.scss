@@ -1,0 +1,43 @@
+.dashboard__wrapper {
+  position: relative;
+
+  .modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    // display: none;
+  }
+  .dashboard-navelem {
+    span {
+      .message {
+        font-size: 12px;
+        color: red;
+      }
+    }
+  }
+  .dashboard-body {
+    .dashboard-links {
+      margin-bottom: 30px;
+      ul {
+        display: flex;
+        gap: 24px;
+        li{
+          font-size: 18px;
+          font-weight: 600;
+          font-style: bold;
+          cursor: pointer;
+          color: rgb(15, 66, 138);
+          padding: 5px 16px;
+          transition: 300ms ease;
+          &:hover,:active {
+            background-color: rgb(15, 66, 138);
+            color: #ffffff;
+          }
+          
+        }
+      }
+    }
+  }
+}
